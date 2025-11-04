@@ -4,7 +4,7 @@ A simple visual novel example developed using Godot.
 
 ## Features
 * Basic scenes, character portraits, text, voice acting, and dialogue choices
-* Looping chapters (not yet implemented)
+* Looping chapters
 * Simple animation effects
 
 ## About Assets

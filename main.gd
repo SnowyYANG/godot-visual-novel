@@ -11,6 +11,7 @@ extends Node2D
 
 var step = 0
 var ed = 0
+var week = 0
 
 func story(step):
 	match(step):
@@ -86,6 +87,16 @@ func story(step):
 			options.get_child(0).text = "再等一周"
 			options.get_child(1).text = "要求退费"
 			return 24
+		25:
+			dialog_name.text = ""
+			if week == 1:
+				dialog_text.text = "第二周过去了，健身房依然没有开业的迹象。"
+			else:
+				dialog_text.text = "又是一周过去了，健身房依然没有开业的迹象。"
+		26:
+			dialog_name.text = "妹子（微信）"
+			dialog_text.text = "亲爱的~真的很抱歉呢~这样这样这样……那样那样那样……我们再耐心等一周哦~[可爱表情包]"
+			return 24
 		50:
 			dialog_name.text = ""
 			dialog_text.text = "我坚持要求退费，妹子给了我一个“领导电话”。"
@@ -128,9 +139,12 @@ func _on_option_pressed(index) -> void:
 		5:
 			if index == 1:
 				step = story(10)
-			else:
+			if index == 0:
 				step = story(20)
 		24:
 			if index == 1:
 				step = story(50)
+			if index == 0:
+				week += 1
+				step = story(25)
 	options.hide()
