@@ -68,7 +68,10 @@ func story(step):
 			ed = 0
 			return 88
 		20:
+			tachie.animation = "normal"
 			dialog_text.text = "下周一，我们不见不散！"
+			voice.stream = preload("res://assets/Voice-seeyou.ogg")
+			voice.play()
 		21:
 			bg.texture = preload("res://assets/BG-blank.jpg")
 			bg.modulate = Color(0.34, 0.568, 0.569, 1.0)
