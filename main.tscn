@@ -377,8 +377,8 @@ Snowy
 极夜
 
 [b]音乐[/b]
-?
-"
+のる
+https://dova-s.jp/"
 scroll_active = false
 horizontal_alignment = 1
 
@@ -387,5 +387,21 @@ libraries = {
 &"": SubResource("AnimationLibrary_efxa6")
 }
 
+[node name="Button" type="Button" parent="."]
+offset_left = 1068.8889
+offset_top = 27.777779
+offset_right = 1156.8889
+offset_bottom = 63.77778
+theme_override_font_sizes/font_size = 20
+text = "重新开始"
+
+[node name="Label" type="Label" parent="."]
+offset_left = 1066.6667
+offset_top = 683.3334
+offset_right = 1264.6667
+offset_bottom = 706.3334
+text = "snowyyang@outlook.com"
+
 [connection signal="pressed" from="UI/Options/Option0" to="." method="_on_option_pressed" binds= [0]]
 [connection signal="pressed" from="UI/Options/Option2" to="." method="_on_option_pressed" binds= [1]]
+[connection signal="pressed" from="Button" to="." method="_on_restart_button_pressed"]

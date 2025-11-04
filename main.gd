@@ -62,8 +62,10 @@ func story(step):
 			tachie.hide()
 			dialog_name.text = ""
 			dialog_text.text = "我走到商场B区，果然看到一个围起来正在装修的门面，上面简单贴了张纸：“健身会所，敬请期待。”"
+			voice.stop()
 		13:
 			dialog_text.text = "要我付的100元，怕不是他们欠的装修队尾款的1/N吧。"
+			ed = 0
 			return 88
 		20:
 			dialog_text.text = "下周一，我们不见不散！"
@@ -148,3 +150,24 @@ func _on_option_pressed(index) -> void:
 				week += 1
 				step = story(25)
 	options.hide()
+
+
+func _on_restart_button_pressed() -> void:
+	restart()
+
+func restart():
+	$BgColor/Label.show()
+	bg.texture = null
+	bg.modulate = Color(1,1,1)
+	tachie.hide()
+	dialog.hide()
+	dialog_name.text = ""
+	options.hide()
+	$UI/Credits/AnimationPlayer.play("RESET")
+	$Bg/EffectsAfterstory/AnimationPlayer.play("RESET")
+	step = 0
+	ed = 0
+	week = 0
+	voice.stop()
+	bgm.stop()
+	
