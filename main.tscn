@@ -89,6 +89,9 @@ position = Vector2(500, 350)
 sprite_frames = SubResource("SpriteFrames_dg77c")
 animation = &"none"
 
+[node name="Bgm" type="AudioStreamPlayer" parent="."]
+volume_db = -1.0
+
 [node name="Voice" type="AudioStreamPlayer" parent="."]
 
 [node name="UI" type="Control" parent="."]

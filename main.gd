@@ -6,6 +6,7 @@ extends Node2D
 @onready var dialog_name = $UI/Dialog/Label
 @onready var dialog_text = $UI/Dialog/RichTextLabel
 @onready var voice = $Voice
+@onready var bgm = $Bgm
 
 var step = 0
 
@@ -18,6 +19,8 @@ func _input(event):
 				tachie.animation = "welcome"
 				dialog.show()
 				dialog_text.set_text("今天在小区门口，被一个穿运动装的妹子拦住，递给我一张传单。")
+				bgm.stream = preload("res://assets/BGM-hotmilktea.mp3")
+				bgm.play()
 			2:
 				tachie.animation = "wonderful0"
 				tachie.play()
