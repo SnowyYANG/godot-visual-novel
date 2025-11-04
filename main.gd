@@ -17,7 +17,7 @@ func story(step):
 		0:
 			return story(1)
 		1:
-			bg.texture = preload("res://assets/Bg-park.jpg")
+			bg.texture = preload("res://assets/BG-park.jpg")
 			tachie.show()
 			tachie.animation = "welcome"
 			dialog.show()
@@ -57,7 +57,7 @@ func story(step):
 			voice.stream = preload("res://assets/Voice-justthere.ogg")
 			voice.play()
 		12:
-			bg.texture = preload("res://assets/Bg-comingsoon.jpg")
+			bg.texture = preload("res://assets/BG-comingsoon.jpg")
 			tachie.hide()
 			dialog_name.text = ""
 			dialog_text.text = "我走到商场B区，果然看到一个围起来正在装修的门面，上面简单贴了张纸：“健身会所，敬请期待。”"
@@ -67,7 +67,7 @@ func story(step):
 		20:
 			dialog_text.text = "下周一，我们不见不散！"
 		21:
-			bg.texture = preload("res://assets/Bg-blank.jpg")
+			bg.texture = preload("res://assets/BG-blank.jpg")
 			bg.modulate = Color(0.34, 0.568, 0.569, 1.0)
 			tachie.hide()
 			dialog_name.text = ""
@@ -97,7 +97,7 @@ func story(step):
 			ed = 5
 			return 88
 		88:
-			bg.texture = preload("res://assets/Bg-blank.jpg")
+			bg.texture = preload("res://assets/BG-blank.jpg")
 			bg.modulate = Color(0,0,0)
 			dialog.hide()
 			$UI/Credits/AnimationPlayer.play("up")
@@ -133,5 +133,4 @@ func _on_option_pressed(index) -> void:
 		24:
 			if index == 1:
 				step = story(50)
-
 	options.hide()
