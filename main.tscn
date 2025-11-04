@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://be0x5fhl86eia"]
+[gd_scene load_steps=18 format=3 uid="uid://be0x5fhl86eia"]
 
-[ext_resource type="Texture2D" uid="uid://b2xmu4m57cjwk" path="res://assets/BG-park.jpg" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://bq6ksjy6knxmw" path="res://main.gd" id="1_lquwl"]
 [ext_resource type="Texture2D" uid="uid://sbwmg6i8aegy" path="res://assets/Tachie.png" id="2_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://bfejwvmwagakg" path="res://assets/BG-blank.jpg" id="2_kek77"]
+[ext_resource type="Texture2D" uid="uid://budjebyuwv3kb" path="res://assets/Effects-afterstory.png" id="3_4c57u"]
 [ext_resource type="Texture2D" uid="uid://cvpwjtgifsdae" path="res://assets/UI-dialog.png" id="3_lquwl"]
 [ext_resource type="Texture2D" uid="uid://dsjpyvbhi5yoq" path="res://assets/Tachie-shame.png" id="4_5vw27"]
 [ext_resource type="Texture2D" uid="uid://ecsojevvn2bb" path="res://assets/Tachie-presale.png" id="4_kek77"]
@@ -10,14 +11,118 @@
 [ext_resource type="Texture2D" uid="uid://5kx18mm8pjwp" path="res://assets/Tachie-wonderful1.png" id="6_4c57u"]
 [ext_resource type="Texture2D" uid="uid://d1ww6rn5rsbgs" path="res://assets/Tachie-wonderful2.png" id="7_efxa6"]
 
+[sub_resource type="Animation" id="Animation_dg77c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../Voice:volume_db")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(7.233333),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../Bgm:volume_db")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-1.0]
+}
+
+[sub_resource type="Animation" id="Animation_efxa6"]
+resource_name = "fade"
+length = 13.9
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.6, 2.9666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2.9666667, 13),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../Voice:volume_db")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(7.0333333, 14.133333),
+"transitions": PackedFloat32Array(1, 4.75683),
+"update": 0,
+"values": [0.0, -10.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../Bgm:volume_db")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(11.866667, 14.166667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-1.0, -80.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ycdy4"]
+_data = {
+&"RESET": SubResource("Animation_dg77c"),
+&"fade": SubResource("Animation_efxa6")
+}
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_dg77c"]
 resource_local_to_scene = true
 animations = [{
-"frames": [],
-"loop": true,
-"name": &"none",
-"speed": 5.0
-}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_1bvp3")
@@ -42,7 +147,7 @@ animations = [{
 "texture": ExtResource("2_1bvp3")
 }],
 "loop": false,
-"name": &"shame_normal",
+"name": &"shame2normal",
 "speed": 1.0
 }, {
 "frames": [{
@@ -65,7 +170,7 @@ animations = [{
 "speed": 1.0
 }, {
 "frames": [{
-"duration": 1.5,
+"duration": 1.3,
 "texture": ExtResource("5_kek77")
 }, {
 "duration": 1.0,
@@ -76,18 +181,109 @@ animations = [{
 "speed": 1.0
 }]
 
+[sub_resource type="Animation" id="Animation_4c57u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1000, 700)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 700)]
+}
+
+[sub_resource type="Animation" id="Animation_kek77"]
+resource_name = "up"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1000, 0), Vector2(1000, 700)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 700), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_efxa6"]
+_data = {
+&"RESET": SubResource("Animation_4c57u"),
+&"up": SubResource("Animation_kek77")
+}
+
 [node name="Node2D" type="Node2D"]
 scale = Vector2(0.9, 0.9)
 script = ExtResource("1_lquwl")
 
+[node name="BgColor" type="Sprite2D" parent="."]
+self_modulate = Color(0.02745098, 0.14117648, 0.19215687, 1)
+position = Vector2(500, 350)
+texture = ExtResource("2_kek77")
+
+[node name="Label" type="Label" parent="BgColor"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -580.0
+offset_top = -364.0
+offset_right = -420.0
+offset_bottom = -336.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+text = "点击鼠标左键开始"
+horizontal_alignment = 1
+
 [node name="Bg" type="Sprite2D" parent="."]
 position = Vector2(500, 350)
-texture = ExtResource("1_ig7tw")
+
+[node name="EffectsAfterstory" type="Sprite2D" parent="Bg"]
+visible = false
+texture = ExtResource("3_4c57u")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Bg/EffectsAfterstory"]
+libraries = {
+&"": SubResource("AnimationLibrary_ycdy4")
+}
 
 [node name="Tachie" type="AnimatedSprite2D" parent="."]
+visible = false
 position = Vector2(500, 350)
 sprite_frames = SubResource("SpriteFrames_dg77c")
-animation = &"none"
+animation = &"wonderful0"
 
 [node name="Bgm" type="AudioStreamPlayer" parent="."]
 volume_db = -1.0
@@ -129,3 +325,67 @@ theme_override_constants/shadow_offset_y = 0
 theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
 drag_and_drop_selection_enabled = false
+
+[node name="Options" type="Control" parent="UI"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Option0" type="Button" parent="UI/Options"]
+layout_mode = 0
+offset_left = 438.88892
+offset_top = 294.44446
+offset_right = 588.8889
+offset_bottom = 334.44446
+theme_override_font_sizes/font_size = 20
+text = "   马上付款   "
+
+[node name="Option2" type="Button" parent="UI/Options"]
+layout_mode = 0
+offset_left = 438.88892
+offset_top = 354.44446
+offset_right = 588.8889
+offset_bottom = 394.44446
+theme_override_font_sizes/font_size = 20
+text = "先去现场看看"
+
+[node name="Credits" type="RichTextLabel" parent="UI"]
+layout_mode = 0
+offset_top = 700.0
+offset_right = 1000.0
+offset_bottom = 1400.0
+theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/bold_font_size = 20
+bbcode_enabled = true
+text = "
+
+
+[font_size=24][b]Godot Visual Novel Example[/b][/font_size]
+
+[b]策划[/b]
+Snowy
+
+[b]程序[/b]
+Snowy
+
+[b]美术[/b]
+黑翼大魔
+
+[b]配音[/b]
+酱子鸭
+极夜
+
+[b]音乐[/b]
+?
+"
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/Credits"]
+libraries = {
+&"": SubResource("AnimationLibrary_efxa6")
+}
+
+[connection signal="pressed" from="UI/Options/Option0" to="." method="_on_option_pressed" binds= [0]]
+[connection signal="pressed" from="UI/Options/Option2" to="." method="_on_option_pressed" binds= [1]]
