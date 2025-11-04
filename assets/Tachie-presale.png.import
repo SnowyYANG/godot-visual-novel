@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ecsojevvn2bb"
-path="res://.godot/imported/Tachie-pleasepay.png-7be93d0cc2564e1d7a78efce0a68afe6.ctex"
+path="res://.godot/imported/Tachie-presale.png-6406b670a69e450f66fd4ed15e6d3c62.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Tachie-pleasepay.png"
-dest_files=["res://.godot/imported/Tachie-pleasepay.png-7be93d0cc2564e1d7a78efce0a68afe6.ctex"]
+source_file="res://assets/Tachie-presale.png"
+dest_files=["res://.godot/imported/Tachie-presale.png-6406b670a69e450f66fd4ed15e6d3c62.ctex"]
 
 [params]
 
