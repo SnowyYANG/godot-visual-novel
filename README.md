@@ -8,7 +8,8 @@ A simple visual novel example developed using Godot.
 * Simple animation effects
 
 ## About
-* **Programming**: [Snowy](mailto:snowyyang@outlook.com)
+* **Program**: [Snowy](mailto:snowyyang@outlook.com)
+* **Story**: [Snowy](mailto:snowyyang@outlook.com)
 * **Art**: [黑翼大魔](mailto:1727569463@qq.com)
 * **Vocals**: 酱子鸭, 极夜
 * **Music**: [のる](https://dova-s.jp/_contents/author/profile437.html)
