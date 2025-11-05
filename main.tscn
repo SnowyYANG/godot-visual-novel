@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://be0x5fhl86eia"]
+[gd_scene load_steps=21 format=3 uid="uid://be0x5fhl86eia"]
 
 [ext_resource type="Script" uid="uid://bq6ksjy6knxmw" path="res://main.gd" id="1_lquwl"]
 [ext_resource type="Texture2D" uid="uid://sbwmg6i8aegy" path="res://assets/Tachie.png" id="2_1bvp3"]
@@ -11,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://5kx18mm8pjwp" path="res://assets/Tachie-wonderful1.png" id="6_4c57u"]
 [ext_resource type="Texture2D" uid="uid://b4tmdrmomxjgc" path="res://assets/Tachie-shamefade.png" id="7_dg77c"]
 [ext_resource type="Texture2D" uid="uid://d1ww6rn5rsbgs" path="res://assets/Tachie-wonderful2.png" id="7_efxa6"]
+[ext_resource type="Texture2D" uid="uid://c2nxwqb1k1sb3" path="res://assets/UI-cover0.jpg" id="12_ycdy4"]
+[ext_resource type="Texture2D" uid="uid://dyxaly5rjr7x5" path="res://assets/UI-cover1.jpg" id="13_w48qg"]
 
 [sub_resource type="Animation" id="Animation_dg77c"]
 length = 0.001
@@ -255,22 +257,6 @@ self_modulate = Color(0.02745098, 0.14117648, 0.19215687, 1)
 position = Vector2(500, 350)
 texture = ExtResource("2_kek77")
 
-[node name="Label" type="Label" parent="BgColor"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -580.0
-offset_top = -364.0
-offset_right = -420.0
-offset_bottom = -336.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 20
-text = "点击鼠标左键开始"
-horizontal_alignment = 1
-
 [node name="Bg" type="Sprite2D" parent="."]
 position = Vector2(500, 350)
 
@@ -391,13 +377,69 @@ libraries = {
 &"": SubResource("AnimationLibrary_efxa6")
 }
 
+[node name="Cover" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="Cover"]
+layout_mode = 0
+offset_right = 1000.0
+offset_bottom = 700.0
+texture = ExtResource("12_ycdy4")
+
+[node name="Cover1" type="TextureRect" parent="Cover"]
+visible = false
+layout_mode = 0
+offset_right = 1000.0
+offset_bottom = 700.0
+texture = ExtResource("13_w48qg")
+
+[node name="Label" type="Label" parent="Cover"]
+layout_mode = 0
+offset_left = 474.44446
+offset_top = 50.000004
+offset_right = 952.44446
+offset_bottom = 100.0
+theme_override_colors/font_color = Color(0.19607843, 0.19607843, 0.24705882, 1)
+theme_override_font_sizes/font_size = 36
+text = "Godot VisualNovel Example"
+
+[node name="Label2" type="Label" parent="Cover"]
+layout_mode = 0
+offset_left = 873.3334
+offset_top = 113.333336
+offset_right = 947.3334
+offset_bottom = 141.11111
+theme_override_colors/font_color = Color(0.19607843, 0.19607843, 0.24705882, 1)
+text = "by Snowy"
+
+[node name="Label3" type="Label" parent="Cover"]
+layout_mode = 0
+offset_left = 440.00003
+offset_top = 630.00006
+offset_right = 560.0
+offset_bottom = 658.00006
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "点击鼠标开始"
+
 [node name="Button" type="Button" parent="."]
 offset_left = 1068.8889
 offset_top = 27.777779
 offset_right = 1156.8889
 offset_bottom = 63.77778
 theme_override_font_sizes/font_size = 20
-text = "重新开始"
+text = "简体中文"
+
+[node name="Button2" type="Button" parent="."]
+offset_left = 1068.8889
+offset_top = 97.77778
+offset_right = 1156.8889
+offset_bottom = 133.77777
+theme_override_font_sizes/font_size = 20
+text = "English"
 
 [node name="Label" type="Label" parent="."]
 offset_left = 1066.6667
@@ -409,3 +451,4 @@ text = "snowyyang@outlook.com"
 [connection signal="pressed" from="UI/Options/Option0" to="." method="_on_option_pressed" binds= [0]]
 [connection signal="pressed" from="UI/Options/Option2" to="." method="_on_option_pressed" binds= [1]]
 [connection signal="pressed" from="Button" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_restart_button_pressed"]

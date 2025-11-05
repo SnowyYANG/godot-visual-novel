@@ -12,6 +12,23 @@ extends Node2D
 var step = 0
 var ed = 0
 var week = 0
+var cg = false
+
+func init():
+	bg.texture = null
+	bg.modulate = Color(1,1,1)
+	tachie.hide()
+	dialog.hide()
+	dialog_name.text = ""
+	options.hide()
+	$UI/Credits/AnimationPlayer.play("RESET")
+	$Bg/EffectsAfterstory.hide()
+	$Bg/EffectsAfterstory/AnimationPlayer.play("RESET")
+	step = 0
+	ed = 0
+	week = 0
+	voice.stop()
+	bgm.stop()
 
 func story(step):
 	match(step):
@@ -125,6 +142,7 @@ func story(step):
 			bg.texture = preload("res://assets/BG-blank.jpg")
 			bg.modulate = Color(0,0,0)
 			dialog.hide()
+			$UI/Credits/AnimationPlayer.speed_scale = 1
 			$UI/Credits/AnimationPlayer.play("up")
 			if ed == 0:
 				return 99
@@ -132,9 +150,9 @@ func story(step):
 				return 100
 		99:
 			$UI/Credits/AnimationPlayer.play("RESET")
-			$BgColor/Label.hide()
 			bg.texture = preload("res://assets/CG.jpg")
 			bg.modulate = Color(1,1,1)
+			cg = true
 			bgm.stream = preload("res://assets/BGM-utaukizu.mp3")
 			bgm.play()
 			voice.stream = preload("res://assets/Voice-afterstory.ogg")
@@ -162,7 +180,18 @@ func _on_option_pressed(index) -> void:
 
 func _input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		step = story(step)
+		if step >= 99 and $UI/Credits/AnimationPlayer.is_playing():
+			print('credits scrolling up')
+			$UI/Credits/AnimationPlayer.speed_scale = 99999999999999
+			return
+		elif step >= 100:
+			init()
+			$Cover.show()
+			$Cover/Cover1.visible = cg
+		else:
+			if step == 0:
+				$Cover.hide()
+			step = story(step)
 
 var _type_id = 0
 var _typing_total_chars = 0
@@ -170,15 +199,17 @@ var type_speed = 0.03  # 秒/字符，按需要调整
 func type_text(text: String, char_delay: float = -1.0) -> void:
 	if char_delay <= 0:
 		char_delay = type_speed
-	_type_id += 1
+	_type_id = Time.get_ticks_msec()
 	var id = _type_id
 	dialog_text.bbcode_text = text
-	await get_tree().process_frame
+	
+	var attempts = 0
+	while attempts < 3:
+		# 等一帧让内部解析完成
+		await get_tree().process_frame
+		attempts += 1
+	
 	_typing_total_chars = dialog_text.get_total_character_count()
-	if _typing_total_chars <= 0:
-		_typing_total_chars = 0
-		return
-	dialog_text.visible_characters = 0
 	var i = 0
 	while i < _typing_total_chars:
 		if id != _type_id:
@@ -189,22 +220,6 @@ func type_text(text: String, char_delay: float = -1.0) -> void:
 	_typing_total_chars = 0
 
 func _on_restart_button_pressed() -> void:
-	restart()
-
-func restart():
-	$BgColor/Label.show()
-	bg.texture = null
-	bg.modulate = Color(1,1,1)
-	tachie.hide()
-	dialog.hide()
-	dialog_name.text = ""
-	options.hide()
-	$UI/Credits/AnimationPlayer.play("RESET")
-	$Bg/EffectsAfterstory.hide()
-	$Bg/EffectsAfterstory/AnimationPlayer.play("RESET")
-	step = 0
-	ed = 0
-	week = 0
-	voice.stop()
-	bgm.stop()
-	
+	cg = false
+	$Cover.show()
+	init()
