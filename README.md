@@ -1,4 +1,4 @@
-# Godot Visual Novel Example
+# Godot VisualNovel Example
 
 A simple visual novel example developed using Godot.
 
