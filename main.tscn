@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://be0x5fhl86eia"]
+[gd_scene load_steps=25 format=3 uid="uid://be0x5fhl86eia"]
 
 [ext_resource type="Script" uid="uid://bq6ksjy6knxmw" path="res://main.gd" id="1_lquwl"]
 [ext_resource type="Texture2D" uid="uid://sbwmg6i8aegy" path="res://assets/Tachie.png" id="2_1bvp3"]
@@ -249,6 +249,44 @@ _data = {
 &"up": SubResource("Animation_kek77")
 }
 
+[sub_resource type="Animation" id="Animation_w48qg"]
+resource_name = "Blink"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.53333336, 1.3333334, 1.9333333),
+"transitions": PackedFloat32Array(1, 1, 3.249009, 0.32987702),
+"update": 0,
+"values": [Color(0.13725491, 0.16078432, 0.29411766, 0.8666667), Color(0.13725491, 0.16078432, 0.29411766, 0.8666667), Color(0.09803922, 0.11764706, 0.22352941, 0), Color(0.13725491, 0.16078432, 0.29411766, 0.8666667)]
+}
+
+[sub_resource type="Animation" id="Animation_vivmo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2cqfq"]
+_data = {
+&"Blink": SubResource("Animation_w48qg"),
+&"RESET": SubResource("Animation_vivmo")
+}
+
 [node name="Node2D" type="Node2D"]
 scale = Vector2(0.9, 0.9)
 script = ExtResource("1_lquwl")
@@ -424,7 +462,7 @@ offset_bottom = 141.11111
 theme_override_colors/font_color = Color(0.19607843, 0.19607843, 0.24705882, 1)
 text = "by Snowy"
 
-[node name="Label3" type="Label" parent="Cover"]
+[node name="ClickStart" type="Label" parent="Cover"]
 layout_mode = 0
 offset_left = 440.00003
 offset_top = 630.00006
@@ -433,6 +471,12 @@ offset_bottom = 658.00006
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "点击鼠标开始"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Cover/ClickStart"]
+libraries = {
+&"": SubResource("AnimationLibrary_2cqfq")
+}
+autoplay = "Blink"
 
 [node name="Button" type="Button" parent="."]
 offset_left = 1068.8889

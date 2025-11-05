@@ -34,7 +34,6 @@ func init():
 	ed = 0
 	week = 0
 
-
 func story(step):
 	match(step):
 		0:
@@ -194,12 +193,11 @@ func _input(event):
 			$UI/Credits/AnimationPlayer.speed_scale = 99999999999999
 			return
 		elif step >= 100:
-			$Cover/Cover1.visible = cg
-			$Cover.show()
-			init()
+			show_cover()
 		else:
 			if step == 0:
 				$Cover.hide()
+				bgm.stop()
 			step = story(step)
 
 var _type_id = 0
@@ -230,6 +228,12 @@ func type_text(text: String, char_delay: float = -1.0) -> void:
 
 func _on_restart_button_pressed() -> void:
 	cg = false
+	show_cover()
+
+func show_cover():
 	$Cover/Cover1.visible = cg
 	$Cover.show()
 	init()
+	bgm.stream = preload("res://assets/BGM-kimiomatsujikan.mp3")
+	bgm.play()
+	
