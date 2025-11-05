@@ -288,12 +288,14 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Dialog" type="TextureRect" parent="UI"]
+visible = false
 layout_mode = 0
 offset_right = 1000.0
 offset_bottom = 700.0
 texture = ExtResource("3_lquwl")
 
 [node name="Name" type="TextureRect" parent="UI/Dialog"]
+visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -385,7 +387,6 @@ libraries = {
 }
 
 [node name="Cover" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
