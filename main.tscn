@@ -193,7 +193,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1000, 700)]
+"values": [Vector2(1000, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -354,7 +354,7 @@ text = "先去现场看看"
 layout_mode = 0
 offset_top = 700.0
 offset_right = 1000.0
-offset_bottom = 1400.0
+offset_bottom = 700.0
 theme_override_font_sizes/normal_font_size = 20
 theme_override_font_sizes/bold_font_size = 20
 bbcode_enabled = true

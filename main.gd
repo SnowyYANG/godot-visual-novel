@@ -96,11 +96,20 @@ func story(step):
 			dialog_name.text = ""
 			if week == 1:
 				dialog_text.text = "第二周过去了，健身房依然没有开业的迹象。"
-			else:
+			elif week == 3:
+				dialog_text.text = "一个月过去了，健身房依然没有开业的迹象。"
+			elif week == 7:
+				dialog_text.text = "两个月过去了，健身房依然没有开业的迹象。"
+			elif week < 7:
 				dialog_text.text = "又是一周过去了，健身房依然没有开业的迹象。"
+			else:
+				dialog_text.text = "这个健身房看来是不会开业了……"
 		26:
 			dialog_name.text = "妹子（微信）"
-			dialog_text.text = "亲爱的~真的很抱歉呢~这样这样这样……那样那样那样……我们再耐心等一周哦~[可爱表情包]"
+			if week > 7:
+				dialog_text.text = "亲爱的~真的很抱歉呢……"
+			else:
+				dialog_text.text = "亲爱的~真的很抱歉呢~这样这样这样……那样那样那样……我们再耐心等一周哦~[可爱表情包]"
 			return 24
 		50:
 			dialog_name.text = ""
