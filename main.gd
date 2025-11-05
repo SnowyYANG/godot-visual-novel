@@ -22,25 +22,25 @@ func story(step):
 			tachie.show()
 			tachie.animation = "welcome"
 			dialog.show()
-			dialog_text.set_text("今天在小区门口，被一个穿运动装的妹子拦住，递给我一张传单。")
+			type_text("今天在小区门口，被一个穿运动装的妹子拦住，递给我一张传单。")
 			bgm.stream = preload("res://assets/BGM-hotmilktea.mp3")
 			bgm.play()
 		2:
 			tachie.animation = "wonderful0"
 			tachie.play()
 			dialog_name.text = "运动装的妹子"
-			dialog_text.set_text("帅哥！我们在隔壁商场新开了一个健身房。")
+			type_text("帅哥！我们在隔壁商场新开了一个健身房。")
 			voice.stream = preload("res://assets/Voice-welcome.ogg")
 			voice.play()
 		3:
 			tachie.animation = "wonderful"
 			tachie.play()
-			dialog_text.set_text("设施条件啊……这么这么这么……那么那么那么……好……~~~")
+			type_text("设施条件啊……这么这么这么……那么那么那么……好……~~~")
 			voice.stream = preload("res://assets/Voice-wonderful.ogg")
 			voice.play()
 		4:
 			tachie.animation = "presale"
-			dialog_text.text = "现在[font_size=9]预售[/font_size]，只要100元一个月哦！"
+			type_text("现在[font_size=9]预售[/font_size]，只要100元一个月哦！")
 			voice.stream = preload("res://assets/Voice-presale.ogg")
 			voice.play()
 		5:
@@ -50,26 +50,26 @@ func story(step):
 			return 5
 		10:
 			dialog_name.text = "我"
-			dialog_text.text = "那我先去看看。"
+			type_text("那我先去看看。")
 		11:
 			tachie.animation = "shame2normal"
 			dialog_name.text = "运动装的妹子"
-			dialog_text.text = "好的呀，就在商场B区，特别好找！"
+			type_text("好的呀，就在商场B区，特别好找！")
 			voice.stream = preload("res://assets/Voice-justthere.ogg")
 			voice.play()
 		12:
 			bg.texture = preload("res://assets/BG-comingsoon.jpg")
 			tachie.hide()
 			dialog_name.text = ""
-			dialog_text.text = "我走到商场B区，果然看到一个围起来正在装修的门面，上面简单贴了张纸：“健身会所，敬请期待。”"
+			type_text("我走到商场B区，果然看到一个围起来正在装修的门面，上面简单贴了张纸：“健身会所，敬请期待。”")
 			voice.stop()
 		13:
-			dialog_text.text = "要我付的100元，怕不是他们欠的装修队尾款的1/N吧。"
+			type_text("要我付的100元，怕不是他们欠的装修队尾款的1/N吧。")
 			ed = 0
 			return 88
 		20:
 			tachie.animation = "normal"
-			dialog_text.text = "下周一，我们不见不散！"
+			type_text("下周一，我们不见不散！")
 			voice.stream = preload("res://assets/Voice-seeyou.ogg")
 			voice.play()
 		21:
@@ -77,16 +77,16 @@ func story(step):
 			bg.modulate = Color(0.34, 0.568, 0.569, 1.0)
 			tachie.hide()
 			dialog_name.text = ""
-			dialog_text.text = "周一，我兴冲冲赶到商场。"
+			type_text("周一，我兴冲冲赶到商场。")
 		22:
 			bg.texture = preload("res://assets/BG-comingsoon.jpg")
 			bg.modulate = Color(1,1,1)
-			dialog_text.text = "眼前的景象让我石化——一个围起来正在装修的门面，上面简单贴了张纸：“健身会所，敬请期待。”"
+			type_text("眼前的景象让我石化——一个围起来正在装修的门面，上面简单贴了张纸：“健身会所，敬请期待。”")
 			bgm.stream = preload("res://assets/BGM-utaukizu.mp3")
 			bgm.play()
 		23:
 			dialog_name.text = "妹子（微信）"
-			dialog_text.text = "实在不好意思呢亲~消防检查还没通过，我们再耐心等一周哦~[可爱表情包]"
+			type_text("实在不好意思呢亲~消防检查还没通过，我们再耐心等一周哦~[可爱表情包]")
 		24:
 			options.show()
 			options.get_child(0).text = "再等一周"
@@ -95,28 +95,28 @@ func story(step):
 		25:
 			dialog_name.text = ""
 			if week == 1:
-				dialog_text.text = "第二周过去了，健身房依然没有开业的迹象。"
+				type_text("第二周过去了，健身房依然没有开业的迹象。")
 			elif week == 3:
-				dialog_text.text = "一个月过去了，健身房依然没有开业的迹象。"
+				type_text("一个月过去了，健身房依然没有开业的迹象。")
 			elif week == 7:
-				dialog_text.text = "两个月过去了，健身房依然没有开业的迹象。"
+				type_text("两个月过去了，健身房依然没有开业的迹象。")
 			elif week < 7:
-				dialog_text.text = "又是一周过去了，健身房依然没有开业的迹象。"
+				type_text("又是一周过去了，健身房依然没有开业的迹象。")
 			else:
-				dialog_text.text = "这个健身房看来是不会开业了……"
+				type_text("这个健身房看来是不会开业了……")
 		26:
 			dialog_name.text = "妹子（微信）"
 			if week > 7:
-				dialog_text.text = "亲爱的~真的很抱歉呢……"
+				type_text("亲爱的~真的很抱歉呢……")
 			else:
-				dialog_text.text = "亲爱的~真的很抱歉呢~这样这样这样……那样那样那样……我们再耐心等一周哦~[可爱表情包]"
+				type_text("亲爱的~真的很抱歉呢~这样这样这样……那样那样那样……我们再耐心等一周哦~[可爱表情包]")
 			return 24
 		50:
 			dialog_name.text = ""
-			dialog_text.text = "我坚持要求退费，妹子给了我一个“领导电话”。"
+			type_text("我坚持要求退费，妹子给了我一个“领导电话”。")
 		51:
 			dialog_name.text = "领导"
-			dialog_text.text = "退费？行，按规定扣30%手续费。"
+			type_text("退费？行，按规定扣30%手续费。")
 			voice.stream = preload("res://assets/Voice-refund.ogg")
 			voice.play()
 			ed = 5
@@ -145,10 +145,6 @@ func story(step):
 			pass
 	return step + 1
 
-func _input(event):
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		step = story(step)
-
 func _on_option_pressed(index) -> void:
 	match(step):
 		5:
@@ -164,6 +160,33 @@ func _on_option_pressed(index) -> void:
 				step = story(25)
 	options.hide()
 
+func _input(event):
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		step = story(step)
+
+var _type_id = 0
+var _typing_total_chars = 0
+var type_speed = 0.03  # 秒/字符，按需要调整
+func type_text(text: String, char_delay: float = -1.0) -> void:
+	if char_delay <= 0:
+		char_delay = type_speed
+	_type_id += 1
+	var id = _type_id
+	dialog_text.bbcode_text = text
+	await get_tree().process_frame
+	_typing_total_chars = dialog_text.get_total_character_count()
+	if _typing_total_chars <= 0:
+		_typing_total_chars = 0
+		return
+	dialog_text.visible_characters = 0
+	var i = 0
+	while i < _typing_total_chars:
+		if id != _type_id:
+			return
+		i += 1
+		dialog_text.visible_characters = i
+		await get_tree().create_timer(char_delay).timeout
+	_typing_total_chars = 0
 
 func _on_restart_button_pressed() -> void:
 	restart()
