@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://be0x5fhl86eia"]
+[gd_scene load_steps=19 format=3 uid="uid://be0x5fhl86eia"]
 
 [ext_resource type="Script" uid="uid://bq6ksjy6knxmw" path="res://main.gd" id="1_lquwl"]
 [ext_resource type="Texture2D" uid="uid://sbwmg6i8aegy" path="res://assets/Tachie.png" id="2_1bvp3"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://ecsojevvn2bb" path="res://assets/Tachie-presale.png" id="4_kek77"]
 [ext_resource type="Texture2D" uid="uid://b8suyf634t1wl" path="res://assets/Tachie-welcome.png" id="5_kek77"]
 [ext_resource type="Texture2D" uid="uid://5kx18mm8pjwp" path="res://assets/Tachie-wonderful1.png" id="6_4c57u"]
+[ext_resource type="Texture2D" uid="uid://b4tmdrmomxjgc" path="res://assets/Tachie-shamefade.png" id="7_dg77c"]
 [ext_resource type="Texture2D" uid="uid://d1ww6rn5rsbgs" path="res://assets/Tachie-wonderful2.png" id="7_efxa6"]
 
 [sub_resource type="Animation" id="Animation_dg77c"]
@@ -140,10 +141,13 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 0.15,
+"duration": 0.5,
 "texture": ExtResource("4_5vw27")
 }, {
-"duration": 999.85,
+"duration": 0.1,
+"texture": ExtResource("7_dg77c")
+}, {
+"duration": 1.0,
 "texture": ExtResource("2_1bvp3")
 }],
 "loop": false,
@@ -283,7 +287,7 @@ libraries = {
 visible = false
 position = Vector2(500, 350)
 sprite_frames = SubResource("SpriteFrames_dg77c")
-animation = &"wonderful0"
+animation = &"shame2normal"
 
 [node name="Bgm" type="AudioStreamPlayer" parent="."]
 volume_db = -1.0
