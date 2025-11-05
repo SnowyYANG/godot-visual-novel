@@ -3,7 +3,8 @@ extends Node2D
 @onready var bg = $Bg
 @onready var tachie = $Tachie
 @onready var dialog = $UI/Dialog
-@onready var dialog_name = $UI/Dialog/Label
+@onready var dialog_name = $UI/Dialog/Name
+@onready var dialog_name_text = $UI/Dialog/Name/Label
 @onready var dialog_text = $UI/Dialog/RichTextLabel
 @onready var voice = $Voice
 @onready var bgm = $Bgm
@@ -19,7 +20,7 @@ func init():
 	bg.modulate = Color(1,1,1)
 	tachie.hide()
 	dialog.hide()
-	dialog_name.text = ""
+	dialog_name.hide()
 	options.hide()
 	$UI/Credits/AnimationPlayer.play("RESET")
 	$Bg/EffectsAfterstory.hide()
@@ -45,7 +46,8 @@ func story(step):
 		2:
 			tachie.animation = "wonderful0"
 			tachie.play()
-			dialog_name.text = "运动装的妹子"
+			dialog_name_text.text = "运动装的妹子"
+			dialog_name.show()
 			type_text("帅哥！我们在隔壁商场新开了一个健身房。")
 			voice.stream = preload("res://assets/Voice-welcome.ogg")
 			voice.play()
@@ -66,18 +68,18 @@ func story(step):
 			options.get_child(1).text = "先去现场看看"
 			return 5
 		10:
-			dialog_name.text = "我"
+			dialog_name_text.text = "我"
 			type_text("那我先去看看。")
 		11:
 			tachie.animation = "shame2normal"
-			dialog_name.text = "运动装的妹子"
+			dialog_name_text.text = "运动装的妹子"
 			type_text("好的呀，就在商场B区，特别好找！")
 			voice.stream = preload("res://assets/Voice-justthere.ogg")
 			voice.play()
 		12:
 			bg.texture = preload("res://assets/BG-comingsoon.jpg")
 			tachie.hide()
-			dialog_name.text = ""
+			dialog_name.hide()
 			type_text("我走到商场B区，果然看到一个围起来正在装修的门面，上面简单贴了张纸：“健身会所，敬请期待。”")
 			voice.stop()
 		13:
@@ -93,7 +95,7 @@ func story(step):
 			bg.texture = preload("res://assets/BG-blank.jpg")
 			bg.modulate = Color(0.34, 0.568, 0.569, 1.0)
 			tachie.hide()
-			dialog_name.text = ""
+			dialog_name.hide()
 			type_text("周一，我兴冲冲赶到商场。")
 		22:
 			bg.texture = preload("res://assets/BG-comingsoon.jpg")
@@ -102,7 +104,8 @@ func story(step):
 			bgm.stream = preload("res://assets/BGM-utaukizu.mp3")
 			bgm.play()
 		23:
-			dialog_name.text = "妹子（微信）"
+			dialog_name_text.text = "妹子（微信）"
+			dialog_name.show()
 			type_text("实在不好意思呢亲~消防检查还没通过，我们再耐心等一周哦~[可爱表情包]")
 		24:
 			options.show()
@@ -110,7 +113,7 @@ func story(step):
 			options.get_child(1).text = "要求退费"
 			return 24
 		25:
-			dialog_name.text = ""
+			dialog_name.hide()
 			if week == 1:
 				type_text("第二周过去了，健身房依然没有开业的迹象。")
 			elif week == 3:
@@ -122,17 +125,19 @@ func story(step):
 			else:
 				type_text("这个健身房看来是不会开业了……")
 		26:
-			dialog_name.text = "妹子（微信）"
+			dialog_name_text.text = "妹子（微信）"
+			dialog_name.show()
 			if week > 7:
 				type_text("亲爱的~真的很抱歉呢……")
 			else:
 				type_text("亲爱的~真的很抱歉呢~这样这样这样……那样那样那样……我们再耐心等一周哦~[可爱表情包]")
 			return 24
 		50:
-			dialog_name.text = ""
+			dialog_name.hide()
 			type_text("我坚持要求退费，妹子给了我一个“领导电话”。")
 		51:
-			dialog_name.text = "领导"
+			dialog_name_text.text = "领导（电话）"
+			dialog_name.show()
 			type_text("退费？行，按规定扣30%手续费。")
 			voice.stream = preload("res://assets/Voice-refund.ogg")
 			voice.play()
