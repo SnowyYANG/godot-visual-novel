@@ -130,6 +130,7 @@ func story(step):
 			bgm.play()
 			voice.stream = preload("res://assets/Voice-afterstory.ogg")
 			voice.play()
+			$Bg/EffectsAfterstory.show()
 			$Bg/EffectsAfterstory/AnimationPlayer.play("fade")
 		100:
 			pass
@@ -167,6 +168,7 @@ func restart():
 	dialog_name.text = ""
 	options.hide()
 	$UI/Credits/AnimationPlayer.play("RESET")
+	$Bg/EffectsAfterstory.hide()
 	$Bg/EffectsAfterstory/AnimationPlayer.play("RESET")
 	step = 0
 	ed = 0
