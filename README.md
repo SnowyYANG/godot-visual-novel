@@ -17,5 +17,5 @@ A simple visual novel example developed using Godot.
 * **Code**: [GPL-3.0](/LICENSE)
 * **Assets**
   - **Art** (*.jpg* / *.png*): [CC-BY-SA-4.0](/LICENSE.txt)
-  - **Voices**(*.ogg*): [CC-BY-SA-4.0](/LICENSE.txt)
+  - **Voices** (*.ogg*): [CC-BY-SA-4.0](/LICENSE.txt)
   - **Music** (*.mp3*): [音源利用ライセンス](https://dova-s.jp/_contents/license/) / [作曲者「のる」さんのプロフィール](https://dova-s.jp/_contents/author/profile437.html)
