@@ -194,8 +194,8 @@ func _input(event):
 			$UI/Credits/AnimationPlayer.speed_scale = 99999999999999
 			return
 		elif step >= 100:
-			$Cover.show()
 			$Cover/Cover1.visible = cg
+			$Cover.show()
 			init()
 		else:
 			if step == 0:
@@ -229,6 +229,7 @@ func type_text(text: String, char_delay: float = -1.0) -> void:
 	_typing_total_chars = 0
 
 func _on_restart_button_pressed() -> void:
-	$Cover.show()
 	cg = false
+	$Cover/Cover1.visible = cg
+	$Cover.show()
 	init()
