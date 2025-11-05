@@ -15,7 +15,12 @@ var ed = 0
 var week = 0
 var cg = false
 
+func _ready() -> void:
+	_on_restart_button_pressed()
+
 func init():
+	voice.stop()
+	bgm.stop()
 	bg.texture = null
 	bg.modulate = Color(1,1,1)
 	tachie.hide()
@@ -28,8 +33,7 @@ func init():
 	step = 0
 	ed = 0
 	week = 0
-	voice.stop()
-	bgm.stop()
+
 
 func story(step):
 	match(step):
@@ -190,9 +194,9 @@ func _input(event):
 			$UI/Credits/AnimationPlayer.speed_scale = 99999999999999
 			return
 		elif step >= 100:
-			init()
 			$Cover.show()
 			$Cover/Cover1.visible = cg
+			init()
 		else:
 			if step == 0:
 				$Cover.hide()
@@ -225,6 +229,6 @@ func type_text(text: String, char_delay: float = -1.0) -> void:
 	_typing_total_chars = 0
 
 func _on_restart_button_pressed() -> void:
-	cg = false
 	$Cover.show()
+	cg = false
 	init()
