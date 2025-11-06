@@ -6,7 +6,7 @@ A simple visual novel example developed using Godot.
 * Basic scenes, character portraits, text, voice acting, and background music
 * Choices, variable, looping
 * Simple animation effects
-
+* Multi-languages
 * TODO:
   - Text history
 
