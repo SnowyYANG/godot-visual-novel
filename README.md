@@ -1,6 +1,7 @@
 # Godot VisualNovel Example
 
 A simple visual novel example developed using Godot.
+![screenshot](https://img.snowyyang.me/godot-examples/vn.webp)
 
 ## Features
 * Basic scenes, character portraits, text, voice acting, and background music
