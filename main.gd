@@ -16,7 +16,7 @@ var week = 0
 var cg = false
 
 func _ready() -> void:
-	_on_restart_button_pressed()
+	show_cover()
 
 func init():
 	voice.stop()
@@ -43,55 +43,55 @@ func story(step):
 			tachie.show()
 			tachie.animation = "welcome"
 			dialog.show()
-			type_text("今天在小区门口，被一个穿运动装的妹子拦住，递给我一张传单。")
+			type_text('s1', "今天在小区门口，被一个穿运动装的妹子拦住，递给我一张传单。")
 			bgm.stream = preload("res://assets/BGM-hotmilktea.mp3")
 			bgm.play()
 		2:
 			tachie.animation = "wonderful0"
 			tachie.play()
-			dialog_name_text.text = "运动装的妹子"
+			dialog_name_text.text = mytr('ng', "运动装的妹子")
 			dialog_name.show()
-			type_text("帅哥！我们在隔壁商场新开了一个健身房。")
+			type_text('s2', "帅哥！我们在隔壁商场新开了一个健身房。")
 			voice.stream = preload("res://assets/Voice-welcome.ogg")
 			voice.play()
 		3:
 			tachie.animation = "wonderful"
 			tachie.play()
-			type_text("设施条件啊……这么这么这么……那么那么那么……好……~~~")
+			type_text('s3', "设施条件啊……这么这么这么……那么那么那么……好……~~~")
 			voice.stream = preload("res://assets/Voice-wonderful.ogg")
 			voice.play()
 		4:
 			tachie.animation = "presale"
-			type_text("现在[font_size=9]预售[/font_size]，只要100元一个月哦！")
+			type_text('s4', "现在[font_size=9]预售[/font_size]，只要100元一个月哦！")
 			voice.stream = preload("res://assets/Voice-presale.ogg")
 			voice.play()
 		5:
 			options.show()
-			options.get_child(0).text = "马上付款"
-			options.get_child(1).text = "先去现场看看"
+			options.get_child(0).text = mytr('o5_0', "马上付款")
+			options.get_child(1).text = mytr('o5_1', "先去现场看看")
 			return 5
 		10:
-			dialog_name_text.text = "我"
-			type_text("那我先去看看。")
+			dialog_name_text.text = mytr('nm', "我")
+			type_text('s10', "那我先去看看。")
 		11:
 			tachie.animation = "shame2normal"
 			dialog_name_text.text = "运动装的妹子"
-			type_text("好的呀，就在商场B区，特别好找！")
+			type_text('s11', "好的呀，就在商场B区，特别好找！")
 			voice.stream = preload("res://assets/Voice-justthere.ogg")
 			voice.play()
 		12:
 			bg.texture = preload("res://assets/BG-comingsoon.jpg")
 			tachie.hide()
 			dialog_name.hide()
-			type_text("我走到商场B区，果然看到一个围起来正在装修的门面，上面简单贴了张纸：“健身会所，敬请期待。”")
+			type_text('s12', "我走到商场B区，果然看到一个围起来正在装修的门面，上面简单贴了张纸：“健身会所，敬请期待。”")
 			voice.stop()
 		13:
-			type_text("要我付的100元，怕不是他们欠的装修队尾款的1/N吧。")
+			type_text('s13', "要我付的100元，怕不是他们欠的装修队尾款的1/N吧。")
 			ed = 0
 			return 88
 		20:
 			tachie.animation = "normal"
-			type_text("下周一，我们不见不散！")
+			type_text('s20', "下周一，我们不见不散！")
 			voice.stream = preload("res://assets/Voice-seeyou.ogg")
 			voice.play()
 		21:
@@ -99,49 +99,49 @@ func story(step):
 			bg.modulate = Color(0.34, 0.568, 0.569, 1.0)
 			tachie.hide()
 			dialog_name.hide()
-			type_text("周一，我兴冲冲赶到商场。")
+			type_text('s21', "周一，我兴冲冲赶到商场。")
 		22:
 			bg.texture = preload("res://assets/BG-comingsoon.jpg")
 			bg.modulate = Color(1,1,1)
-			type_text("眼前的景象让我石化——一个围起来正在装修的门面，上面简单贴了张纸：“健身会所，敬请期待。”")
+			type_text('s22', "眼前的景象让我石化——一个围起来正在装修的门面，上面简单贴了张纸：“健身会所，敬请期待。”")
 			bgm.stream = preload("res://assets/BGM-utaukizu.mp3")
 			bgm.play()
 		23:
-			dialog_name_text.text = "妹子（微信）"
+			dialog_name_text.text = mytr('ngw', "妹子（微信）")
 			dialog_name.show()
-			type_text("实在不好意思呢亲~消防检查还没通过，我们再耐心等一周哦~[可爱表情包]")
+			type_text('s23', "实在不好意思呢亲~消防检查还没通过，我们再耐心等一周哦~[可爱表情包]")
 		24:
 			options.show()
-			options.get_child(0).text = "再等一周"
-			options.get_child(1).text = "要求退费"
+			options.get_child(0).text = mytr('o24_0', "再等一周")
+			options.get_child(1).text = mytr('o24_1', "要求退费")
 			return 24
 		25:
 			dialog_name.hide()
 			if week == 1:
-				type_text("第二周过去了，健身房依然没有开业的迹象。")
+				type_text('s25_1', "第二周过去了，健身房依然没有开业的迹象。")
 			elif week == 3:
-				type_text("一个月过去了，健身房依然没有开业的迹象。")
+				type_text('s25_3', "一个月过去了，健身房依然没有开业的迹象。")
 			elif week == 7:
-				type_text("两个月过去了，健身房依然没有开业的迹象。")
+				type_text('s25_7', "两个月过去了，健身房依然没有开业的迹象。")
 			elif week < 7:
-				type_text("又是一周过去了，健身房依然没有开业的迹象。")
+				type_text('s25_l7', "又是一周过去了，健身房依然没有开业的迹象。")
 			else:
-				type_text("这个健身房看来是不会开业了……")
+				type_text('s25', "这个健身房看来是不会开业了……")
 		26:
-			dialog_name_text.text = "妹子（微信）"
+			dialog_name_text.text = mytr('ngw', "妹子（微信）")
 			dialog_name.show()
 			if week > 7:
-				type_text("亲爱的~真的很抱歉呢……")
+				type_text('s26_7', "亲爱的~真的很抱歉呢……")
 			else:
-				type_text("亲爱的~真的很抱歉呢~这样这样这样……那样那样那样……我们再耐心等一周哦~[可爱表情包]")
+				type_text('s26', "亲爱的~真的很抱歉呢~这样这样这样……那样那样那样……我们再耐心等一周哦~[可爱表情包]")
 			return 24
 		50:
 			dialog_name.hide()
-			type_text("我坚持要求退费，妹子给了我一个“领导电话”。")
+			type_text('s50', "我坚持要求退费，妹子给了我一个“领导电话”。")
 		51:
-			dialog_name_text.text = "领导（电话）"
+			dialog_name_text.text = mytr('nl', "领导（电话）")
 			dialog_name.show()
-			type_text("退费？行，按规定扣30%手续费。")
+			type_text('s51', "退费？行，按规定扣30%手续费。")
 			voice.stream = preload("res://assets/Voice-refund.ogg")
 			voice.play()
 			ed = 5
@@ -200,15 +200,21 @@ func _input(event):
 				bgm.stop()
 			step = story(step)
 
+func mytr(key: String, zh: String) -> String:
+	if (TranslationServer.get_locale() == "en"):
+		return tr(key)
+	return zh
+
 var _type_id = 0
 var _typing_total_chars = 0
 var type_speed = 0.03  # 秒/字符，按需要调整
-func type_text(text: String, char_delay: float = -1.0) -> void:
+func type_text(key, text: String, char_delay: float = -1.0) -> void:
 	if char_delay <= 0:
 		char_delay = type_speed
 	_type_id = Time.get_ticks_msec()
 	var id = _type_id
-	dialog_text.bbcode_text = text
+	
+	dialog_text.bbcode_text = mytr(key, text)
 	
 	var attempts = 0
 	while attempts < 3:
@@ -226,7 +232,8 @@ func type_text(text: String, char_delay: float = -1.0) -> void:
 		await get_tree().create_timer(char_delay).timeout
 	_typing_total_chars = 0
 
-func _on_restart_button_pressed() -> void:
+func _on_lang_button_pressed(lang) -> void:
+	TranslationServer.set_locale(lang)
 	cg = false
 	show_cover()
 
@@ -236,4 +243,3 @@ func show_cover():
 	init()
 	bgm.stream = preload("res://assets/BGM-kimiomatsujikan.mp3")
 	bgm.play()
-	
