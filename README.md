@@ -7,6 +7,9 @@ A simple visual novel example developed using Godot.
 * Choices, variable, looping
 * Simple animation effects
 
+* TODO:
+  - Text history
+
 ## About
 * **Program**: [Snowy](mailto:snowyyang@outlook.com)
 * **Story**: [Snowy](mailto:snowyyang@outlook.com)
