@@ -478,7 +478,7 @@ libraries = {
 }
 autoplay = "Blink"
 
-[node name="Button" type="Button" parent="."]
+[node name="ZhButton" type="Button" parent="."]
 offset_left = 1068.8889
 offset_top = 27.777779
 offset_right = 1156.8889
@@ -486,7 +486,7 @@ offset_bottom = 63.77778
 theme_override_font_sizes/font_size = 20
 text = "简体中文"
 
-[node name="Button2" type="Button" parent="."]
+[node name="EnButton" type="Button" parent="."]
 offset_left = 1068.8889
 offset_top = 97.77778
 offset_right = 1156.8889
@@ -501,7 +501,5 @@ offset_right = 1264.6667
 offset_bottom = 706.3334
 text = "snowyyang@outlook.com"
 
-[connection signal="pressed" from="UI/Options/Option0" to="." method="_on_option_pressed" binds= [0]]
-[connection signal="pressed" from="UI/Options/Option2" to="." method="_on_option_pressed" binds= [1]]
-[connection signal="pressed" from="Button" to="." method="_on_restart_button_pressed"]
-[connection signal="pressed" from="Button2" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="ZhButton" to="." method="_on_lang_button_pressed" binds= ["zh"]]
+[connection signal="pressed" from="EnButton" to="." method="_on_lang_button_pressed" binds= ["en"]]
