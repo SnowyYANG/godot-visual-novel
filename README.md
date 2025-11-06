@@ -12,6 +12,7 @@ A simple visual novel example developed using Godot.
 * **Story**: [Snowy](mailto:snowyyang@outlook.com)
 * **Art**: [黑翼大魔](mailto:1727569463@qq.com)
 * **Vocals**: 酱子鸭, 极夜
+* **Localization**: Kottalo
 * **Music**: [のる](https://dova-s.jp/_contents/author/profile437.html)
 
 ## License
@@ -19,4 +20,5 @@ A simple visual novel example developed using Godot.
 * **Assets**
   - **Art** (*.jpg* / *.png*): [CC-BY-SA-4.0](/LICENSE.txt)
   - **Voices** (*.ogg*): [CC-BY-SA-4.0](/LICENSE.txt)
+  - **Text** (*.csv*): [CC-BY-SA-4.0](/LICENSE.txt)
   - **Music** (*.mp3*): [音源利用ライセンス](https://dova-s.jp/_contents/license/) / [作曲者「のる」さんのプロフィール](https://dova-s.jp/_contents/author/profile437.html)
