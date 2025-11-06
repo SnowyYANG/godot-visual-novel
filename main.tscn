@@ -65,6 +65,18 @@ tracks/3/keys = {
 "update": 0,
 "values": [-1.0]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Subscript:text")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [""]
+}
 
 [sub_resource type="Animation" id="Animation_efxa6"]
 resource_name = "fade"
@@ -116,6 +128,18 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [-1.0, -80.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Subscript:text")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.16666667, 4.1666665),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": ["梁总，上周的工资…………", "……嗯……嗯……哦……好吧……"]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ycdy4"]
@@ -291,6 +315,12 @@ _data = {
 scale = Vector2(0.9, 0.9)
 script = ExtResource("1_lquwl")
 
+[node name="AnimationAfterstory" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Bg/EffectsAfterstory")
+libraries = {
+&"": SubResource("AnimationLibrary_ycdy4")
+}
+
 [node name="BgColor" type="Sprite2D" parent="."]
 self_modulate = Color(0.02745098, 0.14117648, 0.19215687, 1)
 position = Vector2(500, 350)
@@ -303,10 +333,16 @@ position = Vector2(500, 350)
 visible = false
 texture = ExtResource("3_4c57u")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Bg/EffectsAfterstory"]
-libraries = {
-&"": SubResource("AnimationLibrary_ycdy4")
-}
+[node name="Subscript" type="Label" parent="Bg"]
+auto_translate_mode = 2
+visible = false
+offset_left = -500.0
+offset_top = 300.0
+offset_right = 500.0
+offset_bottom = 328.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
 
 [node name="Tachie" type="AnimatedSprite2D" parent="."]
 visible = false
@@ -326,14 +362,12 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Dialog" type="TextureRect" parent="UI"]
-visible = false
 layout_mode = 0
 offset_right = 1000.0
 offset_bottom = 700.0
 texture = ExtResource("3_lquwl")
 
 [node name="Name" type="TextureRect" parent="UI/Dialog"]
-visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -341,9 +375,9 @@ texture = ExtResource("12_w48qg")
 
 [node name="Label" type="Label" parent="UI/Dialog/Name"]
 layout_mode = 0
-offset_left = 111.111115
+offset_left = 103.333336
 offset_top = 422.22223
-offset_right = 273.33334
+offset_right = 276.6667
 offset_bottom = 450.22223
 theme_override_colors/font_color = Color(0.3072149, 0.21647751, 0.19060856, 1)
 theme_override_font_sizes/font_size = 20
@@ -364,26 +398,25 @@ bbcode_enabled = true
 drag_and_drop_selection_enabled = false
 
 [node name="Options" type="Control" parent="UI"]
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Option0" type="Button" parent="UI/Options"]
 layout_mode = 0
-offset_left = 438.88892
-offset_top = 294.44446
-offset_right = 588.8889
-offset_bottom = 334.44446
+offset_left = 427.5
+offset_top = 294.444
+offset_right = 588.5
+offset_bottom = 334.444
 theme_override_font_sizes/font_size = 20
 text = "   马上付款   "
 
-[node name="Option2" type="Button" parent="UI/Options"]
+[node name="Option1" type="Button" parent="UI/Options"]
 layout_mode = 0
-offset_left = 438.88892
-offset_top = 354.44446
-offset_right = 588.8889
-offset_bottom = 394.44446
+offset_left = 427.5
+offset_top = 354.444
+offset_right = 588.5
+offset_bottom = 394.444
 theme_override_font_sizes/font_size = 20
 text = "先去现场看看"
 
@@ -395,27 +428,13 @@ offset_bottom = 700.0
 theme_override_font_sizes/normal_font_size = 20
 theme_override_font_sizes/bold_font_size = 20
 bbcode_enabled = true
-text = "
-
-
-[font_size=24][b]Godot Visual Novel Example[/b][/font_size]
-
-[b]策划[/b]
-Snowy
-
-[b]程序[/b]
-Snowy
-
-[b]美术[/b]
-黑翼大魔
-
-[b]配音[/b]
-酱子鸭
-极夜
-
-[b]音乐[/b]
-のる
-https://dova-s.jp/"
+text = "[br][br][font_size=24][b]Godot Visual Novel Example[/b][/font_size][br]
+[b]策划[/b][br]Snowy[br]
+[b]程序[/b][br]Snowy[br]
+[b]美术[/b][br]黑翼大魔[br]
+[b]配音[/b][br]酱子鸭[br]极夜[br]
+[b]本地化[/b][br]Kottalo[br]
+[b]音乐[/b][br]のる (https://dova-s.jp/)"
 scroll_active = false
 horizontal_alignment = 1
 
@@ -425,6 +444,7 @@ libraries = {
 }
 
 [node name="Cover" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -463,6 +483,7 @@ theme_override_colors/font_color = Color(0.19607843, 0.19607843, 0.24705882, 1)
 text = "by Snowy"
 
 [node name="ClickStart" type="Label" parent="Cover"]
+auto_translate_mode = 2
 layout_mode = 0
 offset_left = 440.00003
 offset_top = 630.00006
@@ -501,5 +522,7 @@ offset_right = 1264.6667
 offset_bottom = 706.3334
 text = "snowyyang@outlook.com"
 
+[connection signal="pressed" from="UI/Options/Option0" to="." method="_on_option_pressed" binds= [0]]
+[connection signal="pressed" from="UI/Options/Option1" to="." method="_on_option_pressed" binds= [1]]
 [connection signal="pressed" from="ZhButton" to="." method="_on_lang_button_pressed" binds= ["zh"]]
 [connection signal="pressed" from="EnButton" to="." method="_on_lang_button_pressed" binds= ["en"]]

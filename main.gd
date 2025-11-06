@@ -27,9 +27,10 @@ func init():
 	dialog.hide()
 	dialog_name.hide()
 	options.hide()
+	$Bg/Subscript.hide()
 	$UI/Credits/AnimationPlayer.play("RESET")
 	$Bg/EffectsAfterstory.hide()
-	$Bg/EffectsAfterstory/AnimationPlayer.play("RESET")
+	$AnimationAfterstory.play("RESET")
 	step = 0
 	ed = 0
 	week = 0
@@ -75,7 +76,7 @@ func story(step):
 			type_text('s10', "那我先去看看。")
 		11:
 			tachie.animation = "shame2normal"
-			dialog_name_text.text = "运动装的妹子"
+			dialog_name_text.text = mytr('ng', "运动装的妹子")
 			type_text('s11', "好的呀，就在商场B区，特别好找！")
 			voice.stream = preload("res://assets/Voice-justthere.ogg")
 			voice.play()
@@ -165,8 +166,9 @@ func story(step):
 			bgm.play()
 			voice.stream = preload("res://assets/Voice-afterstory.ogg")
 			voice.play()
+			$Bg/Subscript.show()
 			$Bg/EffectsAfterstory.show()
-			$Bg/EffectsAfterstory/AnimationPlayer.play("fade")
+			$AnimationAfterstory.play("fade")
 		100:
 			pass
 	return step + 1
@@ -234,6 +236,26 @@ func type_text(key, text: String, char_delay: float = -1.0) -> void:
 
 func _on_lang_button_pressed(lang) -> void:
 	TranslationServer.set_locale(lang)
+	if lang == 'zh':
+		$Cover/ClickStart.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
+		$Bg/Subscript.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
+		$UI/Credits.text = """[br][br][font_size=24][b]Godot Visual Novel Example[/b][/font_size][br]
+[b]策划[/b][br]Snowy[br]
+[b]程序[/b][br]Snowy[br]
+[b]美术[/b][br]黑翼大魔[br]
+[b]配音[/b][br]酱子鸭[br]极夜[br]
+[b]本地化[/b][br]Kottalo[br]
+[b]音乐[/b][br]のる (https://dova-s.jp/)"""
+	else:
+		$Cover/ClickStart.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_ALWAYS
+		$Bg/Subscript.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_ALWAYS
+		$UI/Credits.text = """[br][br][font_size=24][b]Godot Visual Novel Example[/b][/font_size][br]
+[b]Story[/b][br]Snowy[br]
+[b]Program[/b][br]Snowy[br]
+[b]Art[/b][br]黑翼大魔[br]
+[b]Voice[/b][br]酱子鸭[br]极夜[br]
+[b]Localization[/b][br]Kottalo[br]
+[b]Music[/b][br]のる (https://dova-s.jp/)"""
 	cg = false
 	show_cover()
 
