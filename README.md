@@ -1,3 +1,7 @@
+# Repository Archived
+
+This project has been moved to <https://github.com/SummerSnowingStudio/godot-visual-novel>.
+
 # Godot VisualNovel Example
 
 A simple visual novel example developed using Godot.
