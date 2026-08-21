@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://be0x5fhl86eia"]
+[gd_scene format=3 uid="uid://be0x5fhl86eia"]
 
 [ext_resource type="Script" uid="uid://bq6ksjy6knxmw" path="res://main.gd" id="1_lquwl"]
 [ext_resource type="Texture2D" uid="uid://sbwmg6i8aegy" path="res://assets/Tachie.png" id="2_1bvp3"]
@@ -13,7 +13,9 @@
 [ext_resource type="Texture2D" uid="uid://d1ww6rn5rsbgs" path="res://assets/Tachie-wonderful2.png" id="7_efxa6"]
 [ext_resource type="Texture2D" uid="uid://53p540p18bxl" path="res://assets/UI-dialogname.png" id="12_w48qg"]
 [ext_resource type="Texture2D" uid="uid://c2nxwqb1k1sb3" path="res://assets/UI-cover0.jpg" id="12_ycdy4"]
+[ext_resource type="Texture2D" uid="uid://h2l3703d2lx2" path="res://assets/history.png" id="13_2cqfq"]
 [ext_resource type="Texture2D" uid="uid://dyxaly5rjr7x5" path="res://assets/UI-cover1.jpg" id="13_w48qg"]
+[ext_resource type="Texture2D" uid="uid://dkirkd6bokkd3" path="res://assets/history-avatar-1.png" id="14_yaehf"]
 
 [sub_resource type="Animation" id="Animation_dg77c"]
 length = 0.001
@@ -155,7 +157,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("2_1bvp3")
 }],
-"loop": true,
+"loop": 1,
 "name": &"normal",
 "speed": 5.0
 }, {
@@ -163,7 +165,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("4_kek77")
 }],
-"loop": true,
+"loop": 1,
 "name": &"presale",
 "speed": 5.0
 }, {
@@ -177,7 +179,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("2_1bvp3")
 }],
-"loop": false,
+"loop": 0,
 "name": &"shame2normal",
 "speed": 1.0
 }, {
@@ -185,7 +187,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("5_kek77")
 }],
-"loop": true,
+"loop": 1,
 "name": &"welcome",
 "speed": 5.0
 }, {
@@ -196,7 +198,7 @@ animations = [{
 "duration": 0.5,
 "texture": ExtResource("7_efxa6")
 }],
-"loop": true,
+"loop": 1,
 "name": &"wonderful",
 "speed": 1.0
 }, {
@@ -207,7 +209,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("6_4c57u")
 }],
-"loop": false,
+"loop": 0,
 "name": &"wonderful0",
 "speed": 1.0
 }]
@@ -311,29 +313,27 @@ _data = {
 &"RESET": SubResource("Animation_vivmo")
 }
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" unique_id=1827587486]
 scale = Vector2(0.9, 0.9)
 script = ExtResource("1_lquwl")
 
-[node name="AnimationAfterstory" type="AnimationPlayer" parent="."]
+[node name="AnimationAfterstory" type="AnimationPlayer" parent="." unique_id=2145183807]
 root_node = NodePath("../Bg/EffectsAfterstory")
-libraries = {
-&"": SubResource("AnimationLibrary_ycdy4")
-}
+libraries/ = SubResource("AnimationLibrary_ycdy4")
 
-[node name="BgColor" type="Sprite2D" parent="."]
+[node name="BgColor" type="Sprite2D" parent="." unique_id=1971539929]
 self_modulate = Color(0.02745098, 0.14117648, 0.19215687, 1)
 position = Vector2(500, 350)
 texture = ExtResource("2_kek77")
 
-[node name="Bg" type="Sprite2D" parent="."]
+[node name="Bg" type="Sprite2D" parent="." unique_id=396120291]
 position = Vector2(500, 350)
 
-[node name="EffectsAfterstory" type="Sprite2D" parent="Bg"]
+[node name="EffectsAfterstory" type="Sprite2D" parent="Bg" unique_id=1900108693]
 visible = false
 texture = ExtResource("3_4c57u")
 
-[node name="Subscript" type="Label" parent="Bg"]
+[node name="Subscript" type="Label" parent="Bg" unique_id=1391484633]
 auto_translate_mode = 2
 visible = false
 offset_left = -500.0
@@ -344,36 +344,36 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 20
 horizontal_alignment = 1
 
-[node name="Tachie" type="AnimatedSprite2D" parent="."]
+[node name="Tachie" type="AnimatedSprite2D" parent="." unique_id=488148289]
 visible = false
 position = Vector2(500, 350)
 sprite_frames = SubResource("SpriteFrames_dg77c")
 animation = &"shame2normal"
 
-[node name="Bgm" type="AudioStreamPlayer" parent="."]
+[node name="Bgm" type="AudioStreamPlayer" parent="." unique_id=279745252]
 volume_db = -1.0
 
-[node name="Voice" type="AudioStreamPlayer" parent="."]
+[node name="Voice" type="AudioStreamPlayer" parent="." unique_id=429506323]
 
-[node name="UI" type="Control" parent="."]
+[node name="UI" type="Control" parent="." unique_id=824483382]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Dialog" type="TextureRect" parent="UI"]
+[node name="Dialog" type="TextureRect" parent="UI" unique_id=262337136]
 layout_mode = 0
 offset_right = 1000.0
 offset_bottom = 700.0
 texture = ExtResource("3_lquwl")
 
-[node name="Name" type="TextureRect" parent="UI/Dialog"]
+[node name="Name" type="TextureRect" parent="UI/Dialog" unique_id=1259248887]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("12_w48qg")
 
-[node name="Label" type="Label" parent="UI/Dialog/Name"]
+[node name="Label" type="Label" parent="UI/Dialog/Name" unique_id=831817765]
 layout_mode = 0
 offset_left = 103.333336
 offset_top = 422.22223
@@ -383,7 +383,7 @@ theme_override_colors/font_color = Color(0.3072149, 0.21647751, 0.19060856, 1)
 theme_override_font_sizes/font_size = 20
 horizontal_alignment = 1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="UI/Dialog"]
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/Dialog" unique_id=1003607077]
 layout_mode = 0
 offset_left = 121.111115
 offset_top = 482.22223
@@ -397,12 +397,12 @@ theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
 drag_and_drop_selection_enabled = false
 
-[node name="Options" type="Control" parent="UI"]
+[node name="Options" type="Control" parent="UI" unique_id=1970295670]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Option0" type="Button" parent="UI/Options"]
+[node name="Option0" type="Button" parent="UI/Options" unique_id=12422663]
 layout_mode = 0
 offset_left = 427.5
 offset_top = 294.444
@@ -411,7 +411,7 @@ offset_bottom = 334.444
 theme_override_font_sizes/font_size = 20
 text = "   马上付款   "
 
-[node name="Option1" type="Button" parent="UI/Options"]
+[node name="Option1" type="Button" parent="UI/Options" unique_id=60050625]
 layout_mode = 0
 offset_left = 427.5
 offset_top = 354.444
@@ -420,7 +420,7 @@ offset_bottom = 394.444
 theme_override_font_sizes/font_size = 20
 text = "先去现场看看"
 
-[node name="Credits" type="RichTextLabel" parent="UI"]
+[node name="Credits" type="RichTextLabel" parent="UI" unique_id=1058167298]
 layout_mode = 0
 offset_top = 700.0
 offset_right = 1000.0
@@ -438,32 +438,82 @@ text = "[br][br][font_size=24][b]Godot Visual Novel Example[/b][/font_size][br]
 scroll_active = false
 horizontal_alignment = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/Credits"]
-libraries = {
-&"": SubResource("AnimationLibrary_efxa6")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/Credits" unique_id=1308648631]
+libraries/ = SubResource("AnimationLibrary_efxa6")
 
-[node name="Cover" type="Control" parent="."]
+[node name="History" type="Control" parent="UI" unique_id=204929191]
+visible = false
+anchors_preset = 0
+offset_right = 1000.00006
+offset_bottom = 698.8889
+
+[node name="ColorRect" type="ColorRect" parent="UI/History" unique_id=1707087654]
+layout_mode = 0
+offset_right = 998.8889
+offset_bottom = 697.77783
+color = Color(1, 1, 1, 0.24705882)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/History" unique_id=1177758]
+layout_mode = 0
+offset_right = 1000.00006
+offset_bottom = 698.8889
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/History/ScrollContainer" unique_id=1515248315]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="UI/History/ScrollContainer/VBoxContainer" unique_id=166564126]
+layout_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="UI/History/ScrollContainer/VBoxContainer/Control" unique_id=1890643961]
+self_modulate = Color(1, 1, 1, 0.5019608)
+layout_mode = 0
+offset_left = 125.55556
+offset_top = 85.555565
+offset_right = 2184.5557
+offset_bottom = 537.55554
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("13_2cqfq")
+
+[node name="TextureRect" type="TextureRect" parent="UI/History/ScrollContainer/VBoxContainer/Control" unique_id=812128667]
+layout_mode = 0
+offset_left = 68.88889
+offset_top = 30.0
+offset_right = 393.8889
+offset_bottom = 356.0
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("14_yaehf")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/History/ScrollContainer/VBoxContainer/Control" unique_id=104805504]
+layout_mode = 0
+offset_left = 167.77779
+offset_top = 97.77778
+offset_right = 735.5556
+offset_bottom = 208.88889
+theme_override_colors/default_color = Color(0.0627451, 0.10980392, 0.21568628, 0.6313726)
+theme_override_font_sizes/normal_font_size = 20
+text = "帅哥，我们在隔壁"
+
+[node name="Cover" type="Control" parent="." unique_id=1964135107]
 visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="TextureRect" type="TextureRect" parent="Cover"]
+[node name="TextureRect" type="TextureRect" parent="Cover" unique_id=1459091779]
 layout_mode = 0
 offset_right = 1000.0
 offset_bottom = 700.0
 texture = ExtResource("12_ycdy4")
 
-[node name="Cover1" type="TextureRect" parent="Cover"]
+[node name="Cover1" type="TextureRect" parent="Cover" unique_id=1669579542]
 visible = false
 layout_mode = 0
 offset_right = 1000.0
 offset_bottom = 700.0
 texture = ExtResource("13_w48qg")
 
-[node name="Label" type="Label" parent="Cover"]
+[node name="Label" type="Label" parent="Cover" unique_id=1681141919]
 layout_mode = 0
 offset_left = 474.44446
 offset_top = 50.000004
@@ -473,7 +523,7 @@ theme_override_colors/font_color = Color(0.19607843, 0.19607843, 0.24705882, 1)
 theme_override_font_sizes/font_size = 36
 text = "Godot VisualNovel Example"
 
-[node name="Label2" type="Label" parent="Cover"]
+[node name="Label2" type="Label" parent="Cover" unique_id=447071429]
 layout_mode = 0
 offset_left = 873.3334
 offset_top = 113.333336
@@ -482,7 +532,7 @@ offset_bottom = 141.11111
 theme_override_colors/font_color = Color(0.19607843, 0.19607843, 0.24705882, 1)
 text = "by Snowy"
 
-[node name="ClickStart" type="Label" parent="Cover"]
+[node name="ClickStart" type="Label" parent="Cover" unique_id=886141342]
 auto_translate_mode = 2
 layout_mode = 0
 offset_left = 440.00003
@@ -493,13 +543,11 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "点击鼠标开始"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Cover/ClickStart"]
-libraries = {
-&"": SubResource("AnimationLibrary_2cqfq")
-}
-autoplay = "Blink"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Cover/ClickStart" unique_id=293563051]
+libraries/ = SubResource("AnimationLibrary_2cqfq")
+autoplay = &"Blink"
 
-[node name="ZhButton" type="Button" parent="."]
+[node name="ZhButton" type="Button" parent="." unique_id=1196428364]
 offset_left = 1068.8889
 offset_top = 27.777779
 offset_right = 1156.8889
@@ -507,7 +555,7 @@ offset_bottom = 63.77778
 theme_override_font_sizes/font_size = 20
 text = "简体中文"
 
-[node name="EnButton" type="Button" parent="."]
+[node name="EnButton" type="Button" parent="." unique_id=687733930]
 offset_left = 1068.8889
 offset_top = 97.77778
 offset_right = 1156.8889
@@ -515,7 +563,7 @@ offset_bottom = 133.77777
 theme_override_font_sizes/font_size = 20
 text = "English"
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=680014244]
 offset_left = 1066.6667
 offset_top = 683.3334
 offset_right = 1264.6667
