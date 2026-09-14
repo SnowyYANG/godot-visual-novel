@@ -442,7 +442,6 @@ horizontal_alignment = 1
 libraries/ = SubResource("AnimationLibrary_efxa6")
 
 [node name="History" type="Control" parent="UI" unique_id=204929191]
-visible = false
 anchors_preset = 0
 offset_right = 1000.00006
 offset_bottom = 698.8889
@@ -461,37 +460,37 @@ offset_bottom = 698.8889
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/History/ScrollContainer" unique_id=1515248315]
 layout_mode = 2
 
-[node name="Control" type="Control" parent="UI/History/ScrollContainer/VBoxContainer" unique_id=166564126]
+[node name="SingleDialog0" type="Control" parent="UI/History/ScrollContainer/VBoxContainer" unique_id=166564126]
 layout_mode = 2
 
-[node name="TextureRect2" type="TextureRect" parent="UI/History/ScrollContainer/VBoxContainer/Control" unique_id=1890643961]
+[node name="Background" type="TextureRect" parent="UI/History/ScrollContainer/VBoxContainer/SingleDialog0" unique_id=1890643961]
 self_modulate = Color(1, 1, 1, 0.5019608)
 layout_mode = 0
-offset_left = 125.55556
-offset_top = 85.555565
-offset_right = 2184.5557
-offset_bottom = 537.55554
-scale = Vector2(0.3, 0.3)
+offset_left = 146.66669
+offset_top = 82.22221
+offset_right = 2205.6667
+offset_bottom = 534.2222
+scale = Vector2(0.33, 0.33)
 texture = ExtResource("13_2cqfq")
 
-[node name="TextureRect" type="TextureRect" parent="UI/History/ScrollContainer/VBoxContainer/Control" unique_id=812128667]
+[node name="Text" type="RichTextLabel" parent="UI/History/ScrollContainer/VBoxContainer/SingleDialog0/Background" unique_id=104805504]
 layout_mode = 0
-offset_left = 68.88889
-offset_top = 30.0
-offset_right = 393.8889
-offset_bottom = 356.0
+offset_left = 92.06348
+offset_top = 60.317474
+offset_right = 718.5185
+offset_bottom = 171.42857
+scale = Vector2(3, 3)
+theme_override_colors/default_color = Color(0.0627451, 0.10980392, 0.21568628, 0.6313726)
+text = "帅哥，我们在隔壁"
+
+[node name="Avatar" type="TextureRect" parent="UI/History/ScrollContainer/VBoxContainer/SingleDialog0" unique_id=812128667]
+layout_mode = 0
+offset_left = 76.666664
+offset_top = 27.777779
+offset_right = 401.66666
+offset_bottom = 353.77777
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("14_yaehf")
-
-[node name="RichTextLabel" type="RichTextLabel" parent="UI/History/ScrollContainer/VBoxContainer/Control" unique_id=104805504]
-layout_mode = 0
-offset_left = 167.77779
-offset_top = 97.77778
-offset_right = 735.5556
-offset_bottom = 208.88889
-theme_override_colors/default_color = Color(0.0627451, 0.10980392, 0.21568628, 0.6313726)
-theme_override_font_sizes/normal_font_size = 20
-text = "帅哥，我们在隔壁"
 
 [node name="Cover" type="Control" parent="." unique_id=1964135107]
 visible = false
