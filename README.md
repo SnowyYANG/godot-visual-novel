@@ -12,6 +12,7 @@ A simple visual novel example developed using Godot.
 * Multi-languages
 * TODO:
   - Text history
+  - Responsive UI
 
 ## About
 * **Program**: [Snowy](mailto:snowyyang@outlook.com)
