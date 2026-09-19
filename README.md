@@ -10,8 +10,8 @@ A simple visual novel example developed using Godot.
 * Choices, variable, looping
 * Simple animation effects
 * Multi-languages
+* Text history
 * TODO:
-  - Text history
   - Responsive UI
 
 ## About
