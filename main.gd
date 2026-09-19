@@ -9,6 +9,9 @@ extends Node2D
 @onready var voice = $Voice
 @onready var bgm = $Bgm
 @onready var options = $UI/Options
+@onready var history_entries = $UI/History/ScrollContainer/VBoxContainer
+@onready var history_template = $UI/History/ScrollContainer/VBoxContainer/History0
+@onready var history_scroll = $UI/History/ScrollContainer
 
 var step = 0
 var ed = 0
@@ -34,6 +37,10 @@ func init():
 	step = 0
 	ed = 0
 	week = 0
+	for entry in history_entries.get_children():
+		if entry != history_template:
+			entry.queue_free()
+	history_template.hide()
 
 func story(step):
 	match(step):
@@ -47,6 +54,7 @@ func story(step):
 			type_text('s1', "今天在小区门口，被一个穿运动装的妹子拦住，递给我一张传单。")
 			bgm.stream = preload("res://assets/BGM-hotmilktea.mp3")
 			bgm.play()
+			add_history()
 		2:
 			tachie.animation = "wonderful0"
 			tachie.play()
@@ -55,17 +63,20 @@ func story(step):
 			type_text('s2', "帅哥！我们在隔壁商场新开了一个健身房。")
 			voice.stream = preload("res://assets/Voice-welcome.ogg")
 			voice.play()
+			add_history(voice.stream)
 		3:
 			tachie.animation = "wonderful"
 			tachie.play()
 			type_text('s3', "设施条件啊……这么这么这么……那么那么那么……好……~~~")
 			voice.stream = preload("res://assets/Voice-wonderful.ogg")
 			voice.play()
+			add_history(voice.stream)
 		4:
 			tachie.animation = "presale"
 			type_text('s4', "现在[font_size=9]预售[/font_size]，只要100元一个月哦！")
 			voice.stream = preload("res://assets/Voice-presale.ogg")
 			voice.play()
+			add_history(voice.stream)
 		5:
 			options.show()
 			options.get_child(0).text = mytr('o5_0', "马上付款")
@@ -74,43 +85,51 @@ func story(step):
 		10:
 			dialog_name_text.text = mytr('nm', "我")
 			type_text('s10', "那我先去看看。")
+			add_history()
 		11:
 			tachie.animation = "shame2normal"
 			dialog_name_text.text = mytr('ng', "运动装的妹子")
 			type_text('s11', "好的呀，就在商场B区，特别好找！")
 			voice.stream = preload("res://assets/Voice-justthere.ogg")
 			voice.play()
+			add_history(voice.stream)
 		12:
 			bg.texture = preload("res://assets/BG-comingsoon.jpg")
 			tachie.hide()
 			dialog_name.hide()
 			type_text('s12', "我走到商场B区，果然看到一个围起来正在装修的门面，上面简单贴了张纸：“健身会所，敬请期待。”")
 			voice.stop()
+			add_history()
 		13:
 			type_text('s13', "要我付的100元，怕不是他们欠的装修队尾款的1/N吧。")
 			ed = 0
+			add_history()
 			return 88
 		20:
 			tachie.animation = "normal"
 			type_text('s20', "下周一，我们不见不散！")
 			voice.stream = preload("res://assets/Voice-seeyou.ogg")
 			voice.play()
+			add_history(voice.stream)
 		21:
 			bg.texture = preload("res://assets/BG-blank.jpg")
 			bg.modulate = Color(0.34, 0.568, 0.569, 1.0)
 			tachie.hide()
 			dialog_name.hide()
 			type_text('s21', "周一，我兴冲冲赶到商场。")
+			add_history()
 		22:
 			bg.texture = preload("res://assets/BG-comingsoon.jpg")
 			bg.modulate = Color(1,1,1)
 			type_text('s22', "眼前的景象让我石化——一个围起来正在装修的门面，上面简单贴了张纸：“健身会所，敬请期待。”")
 			bgm.stream = preload("res://assets/BGM-utaukizu.mp3")
 			bgm.play()
+			add_history()
 		23:
 			dialog_name_text.text = mytr('ngw', "妹子（微信）")
 			dialog_name.show()
 			type_text('s23', "实在不好意思呢亲~消防检查还没通过，我们再耐心等一周哦~[可爱表情包]")
+			add_history()
 		24:
 			options.show()
 			options.get_child(0).text = mytr('o24_0', "再等一周")
@@ -128,6 +147,7 @@ func story(step):
 				type_text('s25_l7', "又是一周过去了，健身房依然没有开业的迹象。")
 			else:
 				type_text('s25', "这个健身房看来是不会开业了……")
+			add_history()
 		26:
 			dialog_name_text.text = mytr('ngw', "妹子（微信）")
 			dialog_name.show()
@@ -135,10 +155,12 @@ func story(step):
 				type_text('s26_7', "亲爱的~真的很抱歉呢……")
 			else:
 				type_text('s26', "亲爱的~真的很抱歉呢~这样这样这样……那样那样那样……我们再耐心等一周哦~[可爱表情包]")
+			add_history()
 			return 24
 		50:
 			dialog_name.hide()
 			type_text('s50', "我坚持要求退费，妹子给了我一个“领导电话”。")
+			add_history()
 		51:
 			dialog_name_text.text = mytr('nl', "领导（电话）")
 			dialog_name.show()
@@ -146,6 +168,7 @@ func story(step):
 			voice.stream = preload("res://assets/Voice-refund.ogg")
 			voice.play()
 			ed = 5
+			add_history(voice.stream)
 			return 88
 		88:
 			bg.texture = preload("res://assets/BG-blank.jpg")
@@ -233,6 +256,36 @@ func type_text(key, text: String, char_delay: float = -1.0) -> void:
 		dialog_text.visible_characters = i
 		await get_tree().create_timer(char_delay).timeout
 	_typing_total_chars = 0
+
+func add_history(history_voice: AudioStream = null) -> void:
+	var entry = history_template.duplicate()
+	var avatar = entry.get_node("Avatar") as TextureButton
+	var history_text = entry.get_node("Background/Text") as RichTextLabel
+
+	history_text.text = dialog_text.get_parsed_text()
+	var avatar_path = "res://assets/avatar-%s.png" % tachie.animation
+	if tachie.visible and ResourceLoader.exists(avatar_path):
+		avatar.texture_normal = load(avatar_path)
+		avatar.show()
+	else:
+		avatar.hide()
+
+	if history_voice:
+		avatar.disabled = false
+		avatar.tooltip_text = "播放语音"
+		avatar.pressed.connect(_on_history_avatar_pressed.bind(history_voice))
+	else:
+		avatar.disabled = true
+		avatar.tooltip_text = ""
+
+	history_entries.add_child(entry)
+	entry.show()
+	await get_tree().process_frame
+	history_scroll.scroll_vertical = history_scroll.get_v_scroll_bar().max_value
+
+func _on_history_avatar_pressed(stream: AudioStream) -> void:
+	voice.stream = stream
+	voice.play()
 
 func _on_lang_button_pressed(lang) -> void:
 	TranslationServer.set_locale(lang)
