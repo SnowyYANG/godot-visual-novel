@@ -34,6 +34,7 @@ func init():
 	$UI/Credits/AnimationPlayer.play("RESET")
 	$Bg/EffectsAfterstory.hide()
 	$AnimationAfterstory.play("RESET")
+	$UI/History.hide()
 	step = 0
 	ed = 0
 	week = 0
@@ -211,19 +212,20 @@ func _on_option_pressed(index) -> void:
 				step = story(25)
 	options.hide()
 
-func _input(event):
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		if step >= 99 and $UI/Credits/AnimationPlayer.is_playing():
-			print('credits scrolling up')
-			$UI/Credits/AnimationPlayer.speed_scale = 99999999999999
-			return
-		elif step >= 100:
-			show_cover()
+func _on_dialog_input(event):
+	if event is InputEventMouseButton and event.pressed:
+		if  event.button_index == MOUSE_BUTTON_LEFT:
+			if step >= 99 and $UI/Credits/AnimationPlayer.is_playing():
+				print('credits scrolling up')
+				$UI/Credits/AnimationPlayer.speed_scale = 99999999999999
+				return
+			elif step >= 100:
+				show_cover()
+			else:
+				step = story(step)
 		else:
-			if step == 0:
-				$Cover.hide()
-				bgm.stop()
-			step = story(step)
+			if event.button_index == MOUSE_BUTTON_RIGHT:
+				show_history()
 
 func mytr(key: String, zh: String) -> String:
 	if (TranslationServer.get_locale() == "en"):
@@ -312,9 +314,28 @@ func _on_lang_button_pressed(lang) -> void:
 	cg = false
 	show_cover()
 
+func _on_cover_input(event:InputEvent):
+	if event is InputEventMouseButton and event.pressed and step == 0:
+		$Cover.hide()
+		bgm.stop()
+		step = story(0)
+
+func _on_history_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
+		call_deferred("hide_history")
+		get_viewport().set_input_as_handled()
+
+func show_history():
+	print('show_history')
+	$UI/History.show()
+
+func hide_history():
+	$UI/History.hide()
+
 func show_cover():
-	$Cover/Cover1.visible = cg
-	$Cover.show()
 	init()
+	$CG.visible = cg
+	$Cover.show()
+
 	bgm.stream = preload("res://assets/BGM-kimiomatsujikan.mp3")
 	bgm.play()
