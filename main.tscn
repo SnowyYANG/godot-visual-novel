@@ -15,7 +15,6 @@
 [ext_resource type="Texture2D" uid="uid://c2nxwqb1k1sb3" path="res://assets/UI-cover0.jpg" id="12_ycdy4"]
 [ext_resource type="Texture2D" uid="uid://h2l3703d2lx2" path="res://assets/history.png" id="13_2cqfq"]
 [ext_resource type="Texture2D" uid="uid://dyxaly5rjr7x5" path="res://assets/UI-cover1.jpg" id="13_w48qg"]
-[ext_resource type="Texture2D" path="res://assets/history-avatar-1.png" id="14_yaehf"]
 
 [sub_resource type="Animation" id="Animation_dg77c"]
 length = 0.001
@@ -345,7 +344,6 @@ theme_override_font_sizes/font_size = 20
 horizontal_alignment = 1
 
 [node name="Tachie" type="AnimatedSprite2D" parent="." unique_id=488148289]
-visible = false
 position = Vector2(500, 350)
 sprite_frames = SubResource("SpriteFrames_dg77c")
 animation = &"shame2normal"
@@ -354,6 +352,10 @@ animation = &"shame2normal"
 volume_db = -1.0
 
 [node name="Voice" type="AudioStreamPlayer" parent="." unique_id=429506323]
+
+[node name="CG" type="TextureRect" parent="." unique_id=1778919587]
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="UI" type="Control" parent="." unique_id=824483382]
 layout_mode = 3
@@ -442,16 +444,15 @@ horizontal_alignment = 1
 libraries/ = SubResource("AnimationLibrary_efxa6")
 
 [node name="History" type="Control" parent="UI" unique_id=204929191]
-visible = false
 anchors_preset = 0
 offset_right = 1000.00006
 offset_bottom = 698.8889
 
-[node name="ColorRect" type="ColorRect" parent="UI/History" unique_id=1707087654]
+[node name="Mask" type="ColorRect" parent="UI/History" unique_id=1707087654]
 layout_mode = 0
 offset_right = 998.8889
 offset_bottom = 697.77783
-color = Color(1, 1, 1, 0.24705882)
+color = Color(1, 1, 1, 0.7137255)
 
 [node name="ScrollContainer" type="ScrollContainer" parent="UI/History" unique_id=1177758]
 layout_mode = 0
@@ -462,9 +463,9 @@ offset_bottom = 698.8889
 layout_mode = 2
 
 [node name="History0" type="Control" parent="UI/History/ScrollContainer/VBoxContainer" unique_id=166564126]
-visible = false
 custom_minimum_size = Vector2(1000, 175)
 layout_mode = 2
+mouse_filter = 1
 
 [node name="Background" type="TextureRect" parent="UI/History/ScrollContainer/VBoxContainer/History0" unique_id=1890643961]
 self_modulate = Color(1, 1, 1, 0.5019608)
@@ -493,7 +494,6 @@ offset_top = 25.555553
 offset_right = 409.44446
 offset_bottom = 351.55554
 scale = Vector2(0.3, 0.3)
-texture_normal = ExtResource("14_yaehf")
 
 [node name="Cover" type="Control" parent="." unique_id=1964135107]
 visible = false
@@ -572,7 +572,10 @@ offset_right = 1264.6667
 offset_bottom = 706.3334
 text = "snowyyang@outlook.com"
 
+[connection signal="gui_input" from="UI/Dialog" to="." method="_on_dialog_input"]
 [connection signal="pressed" from="UI/Options/Option0" to="." method="_on_option_pressed" binds= [0]]
 [connection signal="pressed" from="UI/Options/Option1" to="." method="_on_option_pressed" binds= [1]]
+[connection signal="gui_input" from="UI/History" to="." method="_on_history_input"]
+[connection signal="gui_input" from="Cover" to="." method="_on_cover_input"]
 [connection signal="pressed" from="ZhButton" to="." method="_on_lang_button_pressed" binds= ["zh"]]
 [connection signal="pressed" from="EnButton" to="." method="_on_lang_button_pressed" binds= ["en"]]
