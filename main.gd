@@ -31,7 +31,8 @@ func init():
 	dialog_name.hide()
 	options.hide()
 	$Bg/Subscript.hide()
-	$UI/Credits/AnimationPlayer.play("RESET")
+	$UI/Credits.visible = false
+	$UI/Credits/RichTextLabel/AnimationPlayer.play("RESET")
 	$Bg/EffectsAfterstory.hide()
 	$AnimationAfterstory.play("RESET")
 	$UI/History.hide()
@@ -172,17 +173,17 @@ func story(step):
 			add_history(null, null, voice.stream)
 			return 88
 		88:
-			bg.texture = preload("res://assets/BG-blank.jpg")
 			bg.modulate = Color(0,0,0)
 			dialog.hide()
-			$UI/Credits/AnimationPlayer.speed_scale = 1
-			$UI/Credits/AnimationPlayer.play("up")
+			$UI/Credits.visible = true
+			$UI/Credits/RichTextLabel/AnimationPlayer.speed_scale = 1
+			$UI/Credits/RichTextLabel/AnimationPlayer.play("up")
 			if ed == 0:
 				return 99
 			else:
 				return 100
 		99:
-			$UI/Credits/AnimationPlayer.play("RESET")
+			$UI/Credits/RichTextLabel/AnimationPlayer.play("RESET")
 			bg.texture = preload("res://assets/CG.jpg")
 			bg.modulate = Color(1,1,1)
 			cg = true
@@ -216,17 +217,20 @@ func _on_option_pressed(index) -> void:
 func _on_dialog_input(event):
 	if event is InputEventMouseButton and event.pressed:
 		if  event.button_index == MOUSE_BUTTON_LEFT:
-			if step >= 99 and $UI/Credits/AnimationPlayer.is_playing():
+			step = story(step)
+		elif event.button_index == MOUSE_BUTTON_RIGHT:
+			show_history()
+
+func _on_credits_input(event):
+	if event is InputEventMouseButton and event.pressed:
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			if step >= 99 and $UI/Credits/RichTextLabel/AnimationPlayer.is_playing():
 				print('credits scrolling up')
-				$UI/Credits/AnimationPlayer.speed_scale = 99999999999999
+				$UI/Credits/RichTextLabel/AnimationPlayer.speed_scale = 99999999999999
+				step = 100
 				return
 			elif step >= 100:
 				show_cover()
-			else:
-				step = story(step)
-		else:
-			if event.button_index == MOUSE_BUTTON_RIGHT:
-				show_history()
 
 func mytr(key: String, zh: String) -> String:
 	if (TranslationServer.get_locale() == "en"):
@@ -333,9 +337,12 @@ func _on_history_input(event: InputEvent) -> void:
 func show_history():
 	print('show_history')
 	$UI/History.show()
+	$UI/History.mouse_filter = Control.MOUSE_FILTER_STOP
 
 func hide_history():
 	$UI/History.hide()
+	$UI/History.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	print('hide_history')
 
 func show_cover():
 	init()

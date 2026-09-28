@@ -422,11 +422,25 @@ offset_bottom = 394.444
 theme_override_font_sizes/font_size = 20
 text = "先去现场看看"
 
-[node name="Credits" type="RichTextLabel" parent="UI" unique_id=1058167298]
+[node name="Credits" type="Control" parent="UI" unique_id=1613451028]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Background" type="ColorRect" parent="UI/Credits" unique_id=1303056037]
+layout_mode = 0
+offset_right = 1000.0
+offset_bottom = 700.0
+mouse_filter = 1
+color = Color(0, 0, 0, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/Credits" unique_id=1058167298]
 layout_mode = 0
 offset_top = 700.0
 offset_right = 1000.0
 offset_bottom = 700.0
+focus_mode = 0
 theme_override_font_sizes/normal_font_size = 20
 theme_override_font_sizes/bold_font_size = 20
 bbcode_enabled = true
@@ -440,7 +454,7 @@ text = "[br][br][font_size=24][b]Godot Visual Novel Example[/b][/font_size][br]
 scroll_active = false
 horizontal_alignment = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/Credits" unique_id=1308648631]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/Credits/RichTextLabel" unique_id=1308648631]
 libraries/ = SubResource("AnimationLibrary_efxa6")
 
 [node name="History" type="Control" parent="UI" unique_id=204929191]
@@ -450,8 +464,8 @@ offset_bottom = 698.8889
 
 [node name="Mask" type="ColorRect" parent="UI/History" unique_id=1707087654]
 layout_mode = 0
-offset_right = 998.8889
-offset_bottom = 697.77783
+offset_right = 1000.0
+offset_bottom = 700.0
 color = Color(1, 1, 1, 0.7137255)
 
 [node name="ScrollContainer" type="ScrollContainer" parent="UI/History" unique_id=1177758]
@@ -575,6 +589,8 @@ text = "snowyyang@outlook.com"
 [connection signal="gui_input" from="UI/Dialog" to="." method="_on_dialog_input"]
 [connection signal="pressed" from="UI/Options/Option0" to="." method="_on_option_pressed" binds= [0]]
 [connection signal="pressed" from="UI/Options/Option1" to="." method="_on_option_pressed" binds= [1]]
+[connection signal="gui_input" from="UI/Credits" to="." method="_on_credits_input"]
+[connection signal="gui_input" from="UI/Credits/RichTextLabel" to="." method="_on_credits_input"]
 [connection signal="gui_input" from="UI/History" to="." method="_on_history_input"]
 [connection signal="gui_input" from="Cover" to="." method="_on_cover_input"]
 [connection signal="pressed" from="ZhButton" to="." method="_on_lang_button_pressed" binds= ["zh"]]
