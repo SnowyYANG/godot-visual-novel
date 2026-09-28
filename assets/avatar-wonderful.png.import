@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dmi0i1t2jiunm"
-path="res://.godot/imported/history-avatar-5.png-79bf9e33150cad13cf55b4be7f94076e.ctex"
+uid="uid://bmv8cvccil04q"
+path="res://.godot/imported/avatar-wonderful.png-09c8910c56146876b177f9b732318b82.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/history-avatar-5.png"
-dest_files=["res://.godot/imported/history-avatar-5.png-79bf9e33150cad13cf55b4be7f94076e.ctex"]
+source_file="res://assets/avatar-wonderful.png"
+dest_files=["res://.godot/imported/avatar-wonderful.png-09c8910c56146876b177f9b732318b82.ctex"]
 
 [params]
 
