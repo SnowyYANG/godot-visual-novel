@@ -353,20 +353,24 @@ volume_db = -1.0
 
 [node name="Voice" type="AudioStreamPlayer" parent="." unique_id=429506323]
 
-[node name="CG" type="TextureRect" parent="." unique_id=1778919587]
-offset_right = 40.0
-offset_bottom = 40.0
-
 [node name="UI" type="Control" parent="." unique_id=824483382]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="ColorRect" type="ColorRect" parent="UI" unique_id=1843993483]
+layout_mode = 0
+offset_right = 1000.0
+offset_bottom = 700.0
+mouse_filter = 1
+color = Color(1, 1, 1, 0)
+
 [node name="Dialog" type="TextureRect" parent="UI" unique_id=262337136]
 layout_mode = 0
 offset_right = 1000.0
 offset_bottom = 700.0
+mouse_filter = 0
 texture = ExtResource("3_lquwl")
 
 [node name="Name" type="TextureRect" parent="UI/Dialog" unique_id=1259248887]
@@ -391,6 +395,7 @@ offset_left = 121.111115
 offset_top = 482.22223
 offset_right = 877.77783
 offset_bottom = 578.8889
+mouse_filter = 1
 theme_override_colors/default_color = Color(0.064284824, 0.110965066, 0.21487498, 1)
 theme_override_constants/shadow_outline_size = 0
 theme_override_constants/shadow_offset_x = 0
@@ -586,6 +591,7 @@ offset_right = 1264.6667
 offset_bottom = 706.3334
 text = "snowyyang@outlook.com"
 
+[connection signal="gui_input" from="UI" to="." method="_on_ui_input"]
 [connection signal="gui_input" from="UI/Dialog" to="." method="_on_dialog_input"]
 [connection signal="pressed" from="UI/Options/Option0" to="." method="_on_option_pressed" binds= [0]]
 [connection signal="pressed" from="UI/Options/Option1" to="." method="_on_option_pressed" binds= [1]]

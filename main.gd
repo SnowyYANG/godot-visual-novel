@@ -31,7 +31,7 @@ func init():
 	dialog_name.hide()
 	options.hide()
 	$Bg/Subscript.hide()
-	$UI/Credits.visible = false
+	$UI/Credits.hide()
 	$UI/Credits/RichTextLabel/AnimationPlayer.play("RESET")
 	$Bg/EffectsAfterstory.hide()
 	$AnimationAfterstory.play("RESET")
@@ -175,7 +175,7 @@ func story(step):
 		88:
 			bg.modulate = Color(0,0,0)
 			dialog.hide()
-			$UI/Credits.visible = true
+			$UI/Credits.show()
 			$UI/Credits/RichTextLabel/AnimationPlayer.speed_scale = 1
 			$UI/Credits/RichTextLabel/AnimationPlayer.play("up")
 			if ed == 0:
@@ -183,10 +183,9 @@ func story(step):
 			else:
 				return 100
 		99:
-			$UI/Credits/RichTextLabel/AnimationPlayer.play("RESET")
-			bg.texture = preload("res://assets/CG.jpg")
-			bg.modulate = Color(1,1,1)
 			cg = true
+			$UI/Credits/RichTextLabel/AnimationPlayer.play("RESET")
+			$Bg.texture = preload("res://assets/CG.jpg")
 			bgm.stream = preload("res://assets/BGM-utaukizu.mp3")
 			bgm.play()
 			voice.stream = preload("res://assets/Voice-afterstory.ogg")
@@ -224,13 +223,15 @@ func _on_dialog_input(event):
 func _on_credits_input(event):
 	if event is InputEventMouseButton and event.pressed:
 		if event.button_index == MOUSE_BUTTON_LEFT:
-			if step >= 99 and $UI/Credits/RichTextLabel/AnimationPlayer.is_playing():
+			if $UI/Credits/RichTextLabel/AnimationPlayer.is_playing():
 				print('credits scrolling up')
 				$UI/Credits/RichTextLabel/AnimationPlayer.speed_scale = 99999999999999
-				step = 100
-				return
-			elif step >= 100:
-				show_cover()
+			else:
+				if step == 99:
+					$UI/Credits.hide()
+					step = story(step)
+				elif step >= 100:
+					show_cover()
 
 func mytr(key: String, zh: String) -> String:
 	if (TranslationServer.get_locale() == "en"):
@@ -301,7 +302,7 @@ func _on_lang_button_pressed(lang) -> void:
 	if lang == 'zh':
 		$Cover/ClickStart.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
 		$Bg/Subscript.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
-		$UI/Credits.text = """[br][br][font_size=24][b]Godot Visual Novel Example[/b][/font_size][br]
+		$UI/Credits/RichTextLabel.text = """[br][br][font_size=24][b]Godot Visual Novel Example[/b][/font_size][br]
 [b]策划[/b][br]Snowy[br]
 [b]程序[/b][br]Snowy[br]
 [b]美术[/b][br]黑翼大魔[br]
@@ -311,7 +312,7 @@ func _on_lang_button_pressed(lang) -> void:
 	else:
 		$Cover/ClickStart.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_ALWAYS
 		$Bg/Subscript.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_ALWAYS
-		$UI/Credits.text = """[br][br][font_size=24][b]Godot Visual Novel Example[/b][/font_size][br]
+		$UI/Credits/RichTextLabel.text = """[br][br][font_size=24][b]Godot Visual Novel Example[/b][/font_size][br]
 [b]Story[/b][br]Snowy[br]
 [b]Program[/b][br]Snowy[br]
 [b]Art[/b][br]黑翼大魔[br]
@@ -345,8 +346,12 @@ func hide_history():
 
 func show_cover():
 	init()
-	$CG.visible = cg
 	$Cover.show()
-
+	$Cover/Cover1.visible = cg
 	bgm.stream = preload("res://assets/BGM-kimiomatsujikan.mp3")
 	bgm.play()
+
+
+func _on_ui_input(event: InputEvent) -> void:
+	if step >= 99 && event is InputEventMouseButton and event.pressed: #afterstory
+		show_cover()
