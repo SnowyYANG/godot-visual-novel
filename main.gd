@@ -291,8 +291,6 @@ func add_history(text = null, avatar = null, voice: AudioStream = null) -> void:
 
 	history_entries.add_child(entry)
 	entry.show()
-	await get_tree().process_frame
-	history_scroll.scroll_vertical = history_scroll.get_v_scroll_bar().max_value
 
 func _on_history_avatar_pressed(stream: AudioStream) -> void:
 	voice.stream = stream
@@ -335,14 +333,15 @@ func _on_history_input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 
 func show_history():
-	print('show_history')
 	$UI/History.show()
 	$UI/History.mouse_filter = Control.MOUSE_FILTER_STOP
+	var scrollbar = history_scroll.get_v_scroll_bar()
+	await get_tree().process_frame
+	history_scroll.scroll_vertical = scrollbar.max_value
 
 func hide_history():
 	$UI/History.hide()
 	$UI/History.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	print('hide_history')
 
 func show_cover():
 	init()
