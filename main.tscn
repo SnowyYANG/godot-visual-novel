@@ -15,7 +15,6 @@
 [ext_resource type="Texture2D" uid="uid://c2nxwqb1k1sb3" path="res://assets/UI-cover0.jpg" id="12_ycdy4"]
 [ext_resource type="Texture2D" uid="uid://h2l3703d2lx2" path="res://assets/history.png" id="13_2cqfq"]
 [ext_resource type="Texture2D" uid="uid://dyxaly5rjr7x5" path="res://assets/UI-cover1.jpg" id="13_w48qg"]
-[ext_resource type="Texture2D" uid="uid://dkirkd6bokkd3" path="res://assets/history-avatar-1.png" id="14_yaehf"]
 
 [sub_resource type="Animation" id="Animation_dg77c"]
 length = 0.001
@@ -345,7 +344,6 @@ theme_override_font_sizes/font_size = 20
 horizontal_alignment = 1
 
 [node name="Tachie" type="AnimatedSprite2D" parent="." unique_id=488148289]
-visible = false
 position = Vector2(500, 350)
 sprite_frames = SubResource("SpriteFrames_dg77c")
 animation = &"shame2normal"
@@ -354,6 +352,10 @@ animation = &"shame2normal"
 volume_db = -1.0
 
 [node name="Voice" type="AudioStreamPlayer" parent="." unique_id=429506323]
+
+[node name="CG" type="TextureRect" parent="." unique_id=1778919587]
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="UI" type="Control" parent="." unique_id=824483382]
 layout_mode = 3
@@ -420,11 +422,25 @@ offset_bottom = 394.444
 theme_override_font_sizes/font_size = 20
 text = "先去现场看看"
 
-[node name="Credits" type="RichTextLabel" parent="UI" unique_id=1058167298]
+[node name="Credits" type="Control" parent="UI" unique_id=1613451028]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Background" type="ColorRect" parent="UI/Credits" unique_id=1303056037]
+layout_mode = 0
+offset_right = 1000.0
+offset_bottom = 700.0
+mouse_filter = 1
+color = Color(0, 0, 0, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/Credits" unique_id=1058167298]
 layout_mode = 0
 offset_top = 700.0
 offset_right = 1000.0
 offset_bottom = 700.0
+focus_mode = 0
 theme_override_font_sizes/normal_font_size = 20
 theme_override_font_sizes/bold_font_size = 20
 bbcode_enabled = true
@@ -438,20 +454,19 @@ text = "[br][br][font_size=24][b]Godot Visual Novel Example[/b][/font_size][br]
 scroll_active = false
 horizontal_alignment = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/Credits" unique_id=1308648631]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/Credits/RichTextLabel" unique_id=1308648631]
 libraries/ = SubResource("AnimationLibrary_efxa6")
 
 [node name="History" type="Control" parent="UI" unique_id=204929191]
-visible = false
 anchors_preset = 0
 offset_right = 1000.00006
 offset_bottom = 698.8889
 
-[node name="ColorRect" type="ColorRect" parent="UI/History" unique_id=1707087654]
+[node name="Mask" type="ColorRect" parent="UI/History" unique_id=1707087654]
 layout_mode = 0
-offset_right = 998.8889
-offset_bottom = 697.77783
-color = Color(1, 1, 1, 0.24705882)
+offset_right = 1000.0
+offset_bottom = 700.0
+color = Color(1, 1, 1, 0.7137255)
 
 [node name="ScrollContainer" type="ScrollContainer" parent="UI/History" unique_id=1177758]
 layout_mode = 0
@@ -461,37 +476,38 @@ offset_bottom = 698.8889
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/History/ScrollContainer" unique_id=1515248315]
 layout_mode = 2
 
-[node name="Control" type="Control" parent="UI/History/ScrollContainer/VBoxContainer" unique_id=166564126]
+[node name="History0" type="Control" parent="UI/History/ScrollContainer/VBoxContainer" unique_id=166564126]
+custom_minimum_size = Vector2(1000, 175)
 layout_mode = 2
+mouse_filter = 1
 
-[node name="TextureRect2" type="TextureRect" parent="UI/History/ScrollContainer/VBoxContainer/Control" unique_id=1890643961]
+[node name="Background" type="TextureRect" parent="UI/History/ScrollContainer/VBoxContainer/History0" unique_id=1890643961]
 self_modulate = Color(1, 1, 1, 0.5019608)
 layout_mode = 0
-offset_left = 125.55556
-offset_top = 85.555565
-offset_right = 2184.5557
-offset_bottom = 537.55554
-scale = Vector2(0.3, 0.3)
+offset_left = 161.11111
+offset_top = 72.22223
+offset_right = 2220.111
+offset_bottom = 524.2222
+scale = Vector2(0.33, 0.33)
 texture = ExtResource("13_2cqfq")
 
-[node name="TextureRect" type="TextureRect" parent="UI/History/ScrollContainer/VBoxContainer/Control" unique_id=812128667]
+[node name="Text" type="RichTextLabel" parent="UI/History/ScrollContainer/VBoxContainer/History0/Background" unique_id=104805504]
 layout_mode = 0
-offset_left = 68.88889
-offset_top = 30.0
-offset_right = 393.8889
-offset_bottom = 356.0
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("14_yaehf")
-
-[node name="RichTextLabel" type="RichTextLabel" parent="UI/History/ScrollContainer/VBoxContainer/Control" unique_id=104805504]
-layout_mode = 0
-offset_left = 167.77779
-offset_top = 97.77778
-offset_right = 735.5556
-offset_bottom = 208.88889
+offset_left = 92.06348
+offset_top = 60.317474
+offset_right = 723.553
+offset_bottom = 171.42857
+scale = Vector2(3, 3)
 theme_override_colors/default_color = Color(0.0627451, 0.10980392, 0.21568628, 0.6313726)
-theme_override_font_sizes/normal_font_size = 20
 text = "帅哥，我们在隔壁"
+
+[node name="Avatar" type="TextureButton" parent="UI/History/ScrollContainer/VBoxContainer/History0" unique_id=812128667]
+layout_mode = 0
+offset_left = 84.44445
+offset_top = 25.555553
+offset_right = 409.44446
+offset_bottom = 351.55554
+scale = Vector2(0.3, 0.3)
 
 [node name="Cover" type="Control" parent="." unique_id=1964135107]
 visible = false
@@ -570,7 +586,12 @@ offset_right = 1264.6667
 offset_bottom = 706.3334
 text = "snowyyang@outlook.com"
 
+[connection signal="gui_input" from="UI/Dialog" to="." method="_on_dialog_input"]
 [connection signal="pressed" from="UI/Options/Option0" to="." method="_on_option_pressed" binds= [0]]
 [connection signal="pressed" from="UI/Options/Option1" to="." method="_on_option_pressed" binds= [1]]
+[connection signal="gui_input" from="UI/Credits" to="." method="_on_credits_input"]
+[connection signal="gui_input" from="UI/Credits/RichTextLabel" to="." method="_on_credits_input"]
+[connection signal="gui_input" from="UI/History" to="." method="_on_history_input"]
+[connection signal="gui_input" from="Cover" to="." method="_on_cover_input"]
 [connection signal="pressed" from="ZhButton" to="." method="_on_lang_button_pressed" binds= ["zh"]]
 [connection signal="pressed" from="EnButton" to="." method="_on_lang_button_pressed" binds= ["en"]]

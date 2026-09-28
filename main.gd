@@ -9,6 +9,9 @@ extends Node2D
 @onready var voice = $Voice
 @onready var bgm = $Bgm
 @onready var options = $UI/Options
+@onready var history_entries = $UI/History/ScrollContainer/VBoxContainer
+@onready var history_template = $UI/History/ScrollContainer/VBoxContainer/History0
+@onready var history_scroll = $UI/History/ScrollContainer
 
 var step = 0
 var ed = 0
@@ -28,12 +31,18 @@ func init():
 	dialog_name.hide()
 	options.hide()
 	$Bg/Subscript.hide()
-	$UI/Credits/AnimationPlayer.play("RESET")
+	$UI/Credits.visible = false
+	$UI/Credits/RichTextLabel/AnimationPlayer.play("RESET")
 	$Bg/EffectsAfterstory.hide()
 	$AnimationAfterstory.play("RESET")
+	$UI/History.hide()
 	step = 0
 	ed = 0
 	week = 0
+	for entry in history_entries.get_children():
+		if entry != history_template:
+			entry.queue_free()
+	history_template.hide()
 
 func story(step):
 	match(step):
@@ -47,6 +56,7 @@ func story(step):
 			type_text('s1', "今天在小区门口，被一个穿运动装的妹子拦住，递给我一张传单。")
 			bgm.stream = preload("res://assets/BGM-hotmilktea.mp3")
 			bgm.play()
+			add_history(null, '')
 		2:
 			tachie.animation = "wonderful0"
 			tachie.play()
@@ -55,17 +65,20 @@ func story(step):
 			type_text('s2', "帅哥！我们在隔壁商场新开了一个健身房。")
 			voice.stream = preload("res://assets/Voice-welcome.ogg")
 			voice.play()
+			add_history(null, 'welcome', voice.stream)
 		3:
 			tachie.animation = "wonderful"
 			tachie.play()
 			type_text('s3', "设施条件啊……这么这么这么……那么那么那么……好……~~~")
 			voice.stream = preload("res://assets/Voice-wonderful.ogg")
 			voice.play()
+			add_history(null, null, voice.stream)
 		4:
 			tachie.animation = "presale"
 			type_text('s4', "现在[font_size=9]预售[/font_size]，只要100元一个月哦！")
 			voice.stream = preload("res://assets/Voice-presale.ogg")
 			voice.play()
+			add_history(null, null, voice.stream)
 		5:
 			options.show()
 			options.get_child(0).text = mytr('o5_0', "马上付款")
@@ -74,43 +87,51 @@ func story(step):
 		10:
 			dialog_name_text.text = mytr('nm', "我")
 			type_text('s10', "那我先去看看。")
+			add_history(null, '')
 		11:
 			tachie.animation = "shame2normal"
 			dialog_name_text.text = mytr('ng', "运动装的妹子")
 			type_text('s11', "好的呀，就在商场B区，特别好找！")
 			voice.stream = preload("res://assets/Voice-justthere.ogg")
 			voice.play()
+			add_history(null, 'shame', voice.stream)
 		12:
 			bg.texture = preload("res://assets/BG-comingsoon.jpg")
 			tachie.hide()
 			dialog_name.hide()
 			type_text('s12', "我走到商场B区，果然看到一个围起来正在装修的门面，上面简单贴了张纸：“健身会所，敬请期待。”")
 			voice.stop()
+			add_history()
 		13:
 			type_text('s13', "要我付的100元，怕不是他们欠的装修队尾款的1/N吧。")
 			ed = 0
+			add_history()
 			return 88
 		20:
 			tachie.animation = "normal"
 			type_text('s20', "下周一，我们不见不散！")
 			voice.stream = preload("res://assets/Voice-seeyou.ogg")
 			voice.play()
+			add_history(null, null, voice.stream)
 		21:
 			bg.texture = preload("res://assets/BG-blank.jpg")
 			bg.modulate = Color(0.34, 0.568, 0.569, 1.0)
 			tachie.hide()
 			dialog_name.hide()
 			type_text('s21', "周一，我兴冲冲赶到商场。")
+			add_history()
 		22:
 			bg.texture = preload("res://assets/BG-comingsoon.jpg")
 			bg.modulate = Color(1,1,1)
 			type_text('s22', "眼前的景象让我石化——一个围起来正在装修的门面，上面简单贴了张纸：“健身会所，敬请期待。”")
 			bgm.stream = preload("res://assets/BGM-utaukizu.mp3")
 			bgm.play()
+			add_history()
 		23:
 			dialog_name_text.text = mytr('ngw', "妹子（微信）")
 			dialog_name.show()
 			type_text('s23', "实在不好意思呢亲~消防检查还没通过，我们再耐心等一周哦~[可爱表情包]")
+			add_history()
 		24:
 			options.show()
 			options.get_child(0).text = mytr('o24_0', "再等一周")
@@ -128,6 +149,7 @@ func story(step):
 				type_text('s25_l7', "又是一周过去了，健身房依然没有开业的迹象。")
 			else:
 				type_text('s25', "这个健身房看来是不会开业了……")
+			add_history()
 		26:
 			dialog_name_text.text = mytr('ngw', "妹子（微信）")
 			dialog_name.show()
@@ -135,10 +157,12 @@ func story(step):
 				type_text('s26_7', "亲爱的~真的很抱歉呢……")
 			else:
 				type_text('s26', "亲爱的~真的很抱歉呢~这样这样这样……那样那样那样……我们再耐心等一周哦~[可爱表情包]")
+			add_history()
 			return 24
 		50:
 			dialog_name.hide()
 			type_text('s50', "我坚持要求退费，妹子给了我一个“领导电话”。")
+			add_history()
 		51:
 			dialog_name_text.text = mytr('nl', "领导（电话）")
 			dialog_name.show()
@@ -146,19 +170,20 @@ func story(step):
 			voice.stream = preload("res://assets/Voice-refund.ogg")
 			voice.play()
 			ed = 5
+			add_history(null, null, voice.stream)
 			return 88
 		88:
-			bg.texture = preload("res://assets/BG-blank.jpg")
 			bg.modulate = Color(0,0,0)
 			dialog.hide()
-			$UI/Credits/AnimationPlayer.speed_scale = 1
-			$UI/Credits/AnimationPlayer.play("up")
+			$UI/Credits.visible = true
+			$UI/Credits/RichTextLabel/AnimationPlayer.speed_scale = 1
+			$UI/Credits/RichTextLabel/AnimationPlayer.play("up")
 			if ed == 0:
 				return 99
 			else:
 				return 100
 		99:
-			$UI/Credits/AnimationPlayer.play("RESET")
+			$UI/Credits/RichTextLabel/AnimationPlayer.play("RESET")
 			bg.texture = preload("res://assets/CG.jpg")
 			bg.modulate = Color(1,1,1)
 			cg = true
@@ -174,6 +199,7 @@ func story(step):
 	return step + 1
 
 func _on_option_pressed(index) -> void:
+	add_history('选择选项：' + options.get_child(index).text, '', null)
 	match(step):
 		5:
 			if index == 1:
@@ -188,19 +214,23 @@ func _on_option_pressed(index) -> void:
 				step = story(25)
 	options.hide()
 
-func _input(event):
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		if step >= 99 and $UI/Credits/AnimationPlayer.is_playing():
-			print('credits scrolling up')
-			$UI/Credits/AnimationPlayer.speed_scale = 99999999999999
-			return
-		elif step >= 100:
-			show_cover()
-		else:
-			if step == 0:
-				$Cover.hide()
-				bgm.stop()
+func _on_dialog_input(event):
+	if event is InputEventMouseButton and event.pressed:
+		if  event.button_index == MOUSE_BUTTON_LEFT:
 			step = story(step)
+		elif event.button_index == MOUSE_BUTTON_RIGHT:
+			show_history()
+
+func _on_credits_input(event):
+	if event is InputEventMouseButton and event.pressed:
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			if step >= 99 and $UI/Credits/RichTextLabel/AnimationPlayer.is_playing():
+				print('credits scrolling up')
+				$UI/Credits/RichTextLabel/AnimationPlayer.speed_scale = 99999999999999
+				step = 100
+				return
+			elif step >= 100:
+				show_cover()
 
 func mytr(key: String, zh: String) -> String:
 	if (TranslationServer.get_locale() == "en"):
@@ -234,6 +264,40 @@ func type_text(key, text: String, char_delay: float = -1.0) -> void:
 		await get_tree().create_timer(char_delay).timeout
 	_typing_total_chars = 0
 
+func add_history(text = null, avatar = null, voice: AudioStream = null) -> void:
+	var entry = history_template.duplicate()
+	var e_avatar = entry.get_node("Avatar") as TextureButton
+	var history_text = entry.get_node("Background/Text") as RichTextLabel
+
+	if text == null:
+		text = dialog_text.get_parsed_text()
+	if avatar == null:
+		avatar = tachie.animation
+	if avatar != '':
+		avatar = "res://assets/avatar-%s.png" % avatar
+
+	history_text.text = text
+	if tachie.visible and ResourceLoader.exists(avatar):
+		if avatar != '':
+			e_avatar.texture_normal = load(avatar)
+		else:
+			e_avatar.texture_normal = null
+		e_avatar.show()
+	else:
+		e_avatar.hide()
+
+	if voice:
+		e_avatar.pressed.connect(_on_history_avatar_pressed.bind(voice))
+
+	history_entries.add_child(entry)
+	entry.show()
+	await get_tree().process_frame
+	history_scroll.scroll_vertical = history_scroll.get_v_scroll_bar().max_value
+
+func _on_history_avatar_pressed(stream: AudioStream) -> void:
+	voice.stream = stream
+	voice.play()
+
 func _on_lang_button_pressed(lang) -> void:
 	TranslationServer.set_locale(lang)
 	if lang == 'zh':
@@ -259,9 +323,31 @@ func _on_lang_button_pressed(lang) -> void:
 	cg = false
 	show_cover()
 
+func _on_cover_input(event:InputEvent):
+	if event is InputEventMouseButton and event.pressed and step == 0:
+		$Cover.hide()
+		bgm.stop()
+		step = story(0)
+
+func _on_history_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
+		call_deferred("hide_history")
+		get_viewport().set_input_as_handled()
+
+func show_history():
+	print('show_history')
+	$UI/History.show()
+	$UI/History.mouse_filter = Control.MOUSE_FILTER_STOP
+
+func hide_history():
+	$UI/History.hide()
+	$UI/History.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	print('hide_history')
+
 func show_cover():
-	$Cover/Cover1.visible = cg
-	$Cover.show()
 	init()
+	$CG.visible = cg
+	$Cover.show()
+
 	bgm.stream = preload("res://assets/BGM-kimiomatsujikan.mp3")
 	bgm.play()
