@@ -170,7 +170,7 @@ func story(step):
 			voice.stream = preload("res://assets/Voice-refund.ogg")
 			voice.play()
 			ed = 5
-			add_history(null, null, voice.stream)
+			add_history(null, 'leaderphone', voice.stream)
 			return 88
 		88:
 			bg.modulate = Color(0,0,0)
@@ -272,18 +272,23 @@ func add_history(text = null, avatar = null, voice: AudioStream = null) -> void:
 
 	if text == null:
 		text = dialog_text.get_parsed_text()
-	if avatar == null:
-		avatar = tachie.animation
-	if avatar != '':
-		avatar = "res://assets/avatar-%s.png" % avatar
-
+		if dialog_name_text.text != '':
+			text = dialog_name_text.text + '：' + text
 	history_text.text = text
-	if tachie.visible and ResourceLoader.exists(avatar):
+
+	if avatar == null and tachie.visible:
+		avatar = tachie.animation
+	if avatar != null:
 		if avatar != '':
-			e_avatar.texture_normal = load(avatar)
+			avatar = "res://assets/avatar-%s.png" % avatar
+		if ResourceLoader.exists(avatar):
+			if avatar != '':
+				e_avatar.texture_normal = load(avatar)
+				e_avatar.show()
+			else:
+				e_avatar.hide()
 		else:
-			e_avatar.texture_normal = null
-		e_avatar.show()
+			e_avatar.hide()
 	else:
 		e_avatar.hide()
 
