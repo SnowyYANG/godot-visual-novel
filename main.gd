@@ -278,19 +278,13 @@ func add_history(text = null, avatar = null, voice: AudioStream = null) -> void:
 
 	if avatar == null and tachie.visible:
 		avatar = tachie.animation
+	e_avatar.hide()
 	if avatar != null:
 		if avatar != '':
 			avatar = "res://assets/avatar-%s.png" % avatar
-		if ResourceLoader.exists(avatar):
-			if avatar != '':
+			if ResourceLoader.exists(avatar):
 				e_avatar.texture_normal = load(avatar)
 				e_avatar.show()
-			else:
-				e_avatar.hide()
-		else:
-			e_avatar.hide()
-	else:
-		e_avatar.hide()
 
 	if voice:
 		e_avatar.pressed.connect(_on_history_avatar_pressed.bind(voice))
