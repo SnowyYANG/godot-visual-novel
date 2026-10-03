@@ -272,7 +272,7 @@ func add_history(text = null, avatar = null, voice: AudioStream = null) -> void:
 
 	if text == null:
 		text = dialog_text.get_parsed_text()
-		if dialog_name_text.text != '':
+		if dialog_name.visible and dialog_name_text.text != '':
 			text = dialog_name_text.text + '：' + text
 	history_text.text = text
 
