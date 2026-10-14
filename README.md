@@ -2,8 +2,7 @@
 
 A simple visual novel example developed using Godot.
 
-![screenshot](https://img.snowyyang.me/godot-examples/vn.webp)
-![screenshot](https://img.snowyyang.me/cdn-cgi/image/format=auto,metadata=none/godot-examples/vn1.png)
+![screenshot](README.screenshot.png)
 
 ## Features
 * Basic scenes, character portraits, text, voice acting, and background music
