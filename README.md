@@ -28,3 +28,6 @@ A simple visual novel example developed using Godot.
   - **Voices** (*.ogg*): [CC-BY-SA-4.0](/LICENSE.txt) (酱子鸭，极夜)
   - **Text** (*.csv*): [CC-BY-SA-4.0](/LICENSE.txt) (Kottalo)
   - **Music** (*.mp3*): [音源利用ライセンス](https://dova-s.jp/_contents/license/) / [作曲者「のる」さんのプロフィール](https://dova-s.jp/_contents/author/profile437.html)
+
+## Acknowledgments
+* [Godot Engine](https://godotengine.org)
