@@ -18,8 +18,8 @@ A simple visual novel example developed using Godot.
 * **Story**: [Snowy](mailto:snowyyang@outlook.com)
 * **Art**: [黑翼大魔](mailto:1727569463@qq.com)
 * **Vocals**: 酱子鸭 (female), 极夜 (male)
-* **Localization**: Kottalo
 * **Music**: [のる](https://dova-s.jp/_contents/author/profile437.html)
+* **Localization**: Kottalo
 
 ## License
 * **Project**: [GPL-3.0](/LICENSE)
