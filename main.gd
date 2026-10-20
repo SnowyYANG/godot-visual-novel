@@ -54,7 +54,7 @@ func story(step):
 			tachie.animation = "welcome"
 			dialog.show()
 			type_text('s1', "今天在小区门口，被一个穿运动装的妹子拦住，递给我一张传单。")
-			bgm.stream = preload("res://assets/BGM-hotmilktea.mp3")
+			bgm.stream = preload("res://assets/BGM_happy_meeting.ogg")
 			bgm.play()
 			add_history(null, '')
 		2:
@@ -124,7 +124,7 @@ func story(step):
 			bg.texture = preload("res://assets/BG-comingsoon.jpg")
 			bg.modulate = Color(1,1,1)
 			type_text('s22', "眼前的景象让我石化——一个围起来正在装修的门面，上面简单贴了张纸：“健身会所，敬请期待。”")
-			bgm.stream = preload("res://assets/BGM-utaukizu.mp3")
+			bgm.stream = preload("res://assets/BGM_unpaidwork.ogg")
 			bgm.play()
 			add_history()
 		23:
@@ -186,7 +186,7 @@ func story(step):
 			cg = true
 			$UI/Credits/RichTextLabel/AnimationPlayer.play("RESET")
 			$Bg.texture = preload("res://assets/CG.jpg")
-			bgm.stream = preload("res://assets/BGM-utaukizu.mp3")
+			bgm.stream = preload("res://assets/BGM_unpaidwork.ogg")
 			bgm.play()
 			voice.stream = preload("res://assets/Voice-afterstory.ogg")
 			voice.play()
@@ -307,7 +307,7 @@ func _on_lang_button_pressed(lang) -> void:
 [b]美术[/b][br]黑翼大魔[br]
 [b]配音[/b][br]酱子鸭[br]极夜[br]
 [b]本地化[/b][br]Kottalo[br]
-[b]音乐[/b][br]のる (https://dova-s.jp/)"""
+[b]音乐[/b][br]Arcy Cadence"""
 	else:
 		$Cover/ClickStart.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_ALWAYS
 		$Bg/Subscript.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_ALWAYS
@@ -317,7 +317,7 @@ func _on_lang_button_pressed(lang) -> void:
 [b]Art[/b][br]黑翼大魔[br]
 [b]Voice[/b][br]酱子鸭[br]极夜[br]
 [b]Localization[/b][br]Kottalo[br]
-[b]Music[/b][br]のる (https://dova-s.jp/)"""
+[b]Music[/b][br]Arcy Cadence"""
 	cg = false
 	show_cover()
 
@@ -347,7 +347,7 @@ func show_cover():
 	init()
 	$Cover.show()
 	$Cover/Cover1.visible = cg
-	bgm.stream = preload("res://assets/BGM-kimiomatsujikan.mp3")
+	bgm.stream = preload("res://assets/BGM_main_menu-01.ogg")
 	bgm.play()
 
 
